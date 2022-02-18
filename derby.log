@@ -1,0 +1,16 @@
+----------------------------------------------------------------
+Thu Feb 17 19:18:43 IST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-017f-07f1-3823-0000024a59c8 
+on database directory memory:/Users/vishalsingh/Desktop/SpringBootTutorial/b1aaeadd-f5ba-4bf7-8bb2-4e7bf4d97df0 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406 
+Loaded from file:/Users/vishalsingh/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.2+8
+user.dir=/Users/vishalsingh/Desktop/SpringBootTutorial
+os.name=Mac OS X
+os.arch=aarch64
+os.version=12.2.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Feb 17 19:21:37 IST 2022:
+Shutting down instance a816c00e-017f-07f1-3823-0000024a59c8 on database directory memory:/Users/vishalsingh/Desktop/SpringBootTutorial/b1aaeadd-f5ba-4bf7-8bb2-4e7bf4d97df0 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@42110406 
