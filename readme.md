@@ -31,4 +31,4 @@ curl -X DELETE http://localhost:9090/1
 
 
 ### Connection
-Make sure to check you connection if error occured
+Make sure to check your connection if error occured
