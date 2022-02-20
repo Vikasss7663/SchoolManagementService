@@ -20,7 +20,7 @@ public class CourseController {
 		return service.getCourses();
 	}
 
-	// GET ( Get Course )
+	// GET ( Get Course by Id)
 	@RequestMapping(method = RequestMethod.GET, value = "{id}")
 	public Course getCourse(@PathVariable int id) {
 		return service.getCourse(id);
@@ -49,7 +49,7 @@ public class CourseController {
 	// Testing purpose
 	@RequestMapping(method = RequestMethod.GET, value="welcome")
 	public String welcome() {
-		return "Welcome to Spring Boot";
+		return "Welcome to Spring Boot Tutorial";
 	}
 
 }
