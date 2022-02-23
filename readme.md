@@ -1,3 +1,7 @@
+# Spring Boot Tutorial App
+
+## API Calls
+
 ### For testing purpose
 curl http://localhost:9090/welcome
 
@@ -8,6 +12,7 @@ curl http://localhost:9090/
 
 ### GET ( Get Course by Id)
 curl http://localhost:9090/{id}
+
 curl http://localhost:9090/1
 
 
@@ -28,7 +33,3 @@ curl -d '{"courseId":"1","courseName":"Java Programming"}' -H "Content-Type: app
 curl -X DELETE http://localhost:9090/{id}
 
 curl -X DELETE http://localhost:9090/1
-
-
-### Connection
-Make sure to check your connection if error occured
