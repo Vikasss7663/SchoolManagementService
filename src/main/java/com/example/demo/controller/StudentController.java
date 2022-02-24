@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.example.demo.model.Student;
+import com.example.demo.model.StudentCourse;
 import com.example.demo.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,12 @@ public class StudentController {
 	@RequestMapping(method = RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
 		service.addStudent(student);
+	}
+
+	// POST ( Add Course )
+	@RequestMapping(method = RequestMethod.POST, value = "course")
+	public void addCourse(@RequestBody StudentCourse studentCourse) {
+		service.addCourse(studentCourse);
 	}
 	
 	// PUT ( Update Student )

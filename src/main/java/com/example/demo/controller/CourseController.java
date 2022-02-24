@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.*;
 
 import com.example.demo.model.Course;
+import com.example.demo.model.StudentCourse;
 import com.example.demo.service.CourseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class CourseController {
 		service.addCourse(course);
 	}
 	
+	// POST ( Add Student )
+	@RequestMapping(method = RequestMethod.POST, value = "student")
+	public void addStudent(@RequestBody StudentCourse studentCourse) {
+		service.addStudent(studentCourse);
+	}
+
 	// PUT ( Update Course )
 	@RequestMapping(method = RequestMethod.PUT, value = "{id}")
 	public void updateCourse(@RequestBody Course course,
@@ -55,7 +62,7 @@ public class CourseController {
 
 	// GET ( Get All Courses by Student Id)
 	@RequestMapping(method = RequestMethod.GET, value = "student/{id}")
-	public List<Course> getStudentsByCourseId(@PathVariable String id) {
+	public List<Course> getCoursesByStudentId(@PathVariable String id) {
 		return service.getCoursesByStudentId(id);
 	}
 
