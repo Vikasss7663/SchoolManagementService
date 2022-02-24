@@ -9,6 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
+import com.example.demo.model.Course;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -24,7 +26,7 @@ class DemoApplicationTests {
 
 		this.mockMvc.perform(get("/welcome")).andDo(print());
 
-		Course fakeCourse = new Course(1, "Updated New Programming");
+		Course fakeCourse = new Course();
 
 		this.mockMvc.perform(post("/")
 		.contentType("application/json")

@@ -1,13 +1,15 @@
 package com.example.demo.controller;
 
 import java.util.*;
-import com.example.demo.Course;
-import com.example.demo.CourseService;
+
+import com.example.demo.model.Course;
+import com.example.demo.service.CourseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/course")
 public class CourseController {
 
 	// Dependency Injection - Singleton
@@ -17,12 +19,18 @@ public class CourseController {
 	// GET ( Get All Courses )
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Course> getCourses() {
-		return service.getCourses();
+		return new ArrayList<Course>(service.getCourses());
 	}
+
+	// GET ( Get All Courses By Semester )
+	@RequestMapping(method = RequestMethod.GET, value = "semester={semester}")
+	public List<Course> getCoursesBySemester(@PathVariable int semester) {
+		return new ArrayList<Course>(service.getCoursesBySemester(semester));
+	}	
 
 	// GET ( Get Course by Id)
 	@RequestMapping(method = RequestMethod.GET, value = "{id}")
-	public Course getCourse(@PathVariable int id) {
+	public Course getCourse(@PathVariable String id) {
 		return service.getCourse(id);
 	}	
 
@@ -35,21 +43,20 @@ public class CourseController {
 	// PUT ( Update Course )
 	@RequestMapping(method = RequestMethod.PUT, value = "{id}")
 	public void updateCourse(@RequestBody Course course,
-							@PathVariable int id) {
+							@PathVariable String id) {
 		service.updateCourse(id, course);
 	}
 	
 	// DELETE ( Delete Course )
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-	public void deleteCourse(@PathVariable int id) {
+	public void deleteCourse(@PathVariable String id) {
 		service.deleteCourse(id);
 	}
 
-
-	// Testing purpose
-	@RequestMapping(method = RequestMethod.GET, value="welcome")
-	public String welcome() {
-		return "Welcome to Spring Boot Tutorial";
+	// GET ( Get All Courses by Student Id)
+	@RequestMapping(method = RequestMethod.GET, value = "student/{id}")
+	public List<Course> getStudentsByCourseId(@PathVariable String id) {
+		return service.getCoursesByStudentId(id);
 	}
 
 }
