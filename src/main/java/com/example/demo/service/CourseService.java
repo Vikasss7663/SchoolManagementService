@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.*;
 
 import com.example.demo.model.Course;
-import com.example.demo.model.Student;
 import com.example.demo.model.StudentCourse;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.StudentCourseRepository;

@@ -10,7 +10,6 @@ import com.example.demo.model.Student;
 
 public interface StudentCourseRepository extends JpaRepository<StudentCourse, StudentCourseId> {
 
-
     @Query("SELECT c FROM Course c INNER JOIN StudentCourse sc ON c.courseId = sc.courseId WHERE sc.studentId = ?1")
     public List<Course> findCoursesByStudentId(String studentId);
 

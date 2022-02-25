@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.repository.StudentCourseRepository;
 import com.example.demo.repository.StudentRepository;
-import com.example.demo.model.Course;
 import com.example.demo.model.Student;
 import com.example.demo.model.StudentCourse;
 
