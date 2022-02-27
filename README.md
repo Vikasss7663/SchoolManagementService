@@ -58,9 +58,9 @@ curl http://localhost:9090/student/course/{id}
 curl http://localhost:9090/student/course/"BMT499"
 
 ### GET ( Get Student)
-curl http://localhost:9090/student/id={id}
+curl http://localhost:9090/student/{id}
 
-curl http://localhost:9090/student/id="2018UEC1001"
+curl http://localhost:9090/student/"2018UEC1001"
 
 ### POST ( Add Student )
 curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
@@ -82,3 +82,48 @@ curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh","studentSemeste
 curl -X DELETE http://localhost:9090/student/{id}
 
 curl -X DELETE http://localhost:9090/student/1
+
+
+## Schedule API Calls
+
+### GET ( Get All Schedules )
+curl http://localhost:9090/schedule
+
+### GET ( Get Schedule)
+curl http://localhost:9090/schedule/{id}
+
+curl http://localhost:9090/schedule/i
+
+### POST ( Add Schedule )
+curl -d '{"weekDay":"MONDAY","startTime":"01:00 PM","endTime":"02:00 PM"}' -H "Content-Type: application/json" -X POST http://localhost:9090/schedule
+
+### PUT ( Update Schedule )
+curl -d '{"weekDay":"MONDAY","startTime":"01:00 PM","endTime":"02:00 PM"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/schedule/1
+
+
+### DELETE ( Delete Schedule )
+curl -X DELETE http://localhost:9090/schedule/{id}
+
+curl -X DELETE http://localhost:9090/schedule/1
+
+
+## Location API Calls
+
+### GET ( Get All Locations )
+curl http://localhost:9090/location
+
+### GET ( Get Location)
+curl http://localhost:9090/location/{id}
+
+curl http://localhost:9090/location/1
+
+### POST ( Add Location )
+curl -d '{"building":"VLTC","floor":"First","room":"L304"}' -H "Content-Type: application/json" -X POST http://localhost:9090/location
+
+### PUT ( Update Location )
+curl -d '{"building":"VLTC","floor":"First","room":"L304"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/location/1
+
+### DELETE ( Delete Location )
+curl -X DELETE http://localhost:9090/location/{id}
+
+curl -X DELETE http://localhost:9090/location/1

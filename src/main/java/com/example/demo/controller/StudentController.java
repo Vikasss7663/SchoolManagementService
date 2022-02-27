@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.model.Student;
-import com.example.demo.model.StudentCourse;
+import com.example.demo.model.CourseRegistration;
+import com.example.demo.model.CourseRegistrationId;
 import com.example.demo.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,7 +34,7 @@ public class StudentController {
 
 	// GET ( Get All Students By Year )
 	@RequestMapping(method = RequestMethod.GET, value = "year={year}")
-	public List<Student> getStudentsByYear(@PathVariable int year) {
+	public List<Student> getStudentsByYear(@NonNull @PathVariable int year) {
 		return new ArrayList<Student>(service.getStudentsByYear(year));
 	}
 
@@ -50,7 +52,8 @@ public class StudentController {
 
 	// POST ( Add Course )
 	@RequestMapping(method = RequestMethod.POST, value = "course")
-	public void addCourse(@RequestBody StudentCourse studentCourse) {
+	public void addCourse(@RequestBody CourseRegistrationId studentCourseId) {
+		CourseRegistration studentCourse = new CourseRegistration(studentCourseId);
 		service.addCourse(studentCourse);
 	}
 	

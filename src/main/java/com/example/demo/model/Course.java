@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Course {
@@ -10,6 +13,9 @@ public class Course {
     private String courseId;
     private String courseName;
     private int courseSemester;
+
+    @OneToMany(mappedBy = "course")
+    private Set<CourseRegistration> courseRegistrations;
 
     public String getCourseId() {
         return this.courseId;

@@ -1,9 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.repository.StudentCourseRepository;
+import com.example.demo.repository.CourseRegistrationRepository;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.model.Student;
-import com.example.demo.model.StudentCourse;
+import com.example.demo.model.CourseRegistration;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
-    private StudentCourseRepository studentCourseRepository;
+    private CourseRegistrationRepository courseRegistrationRepository;
 
     public List<Student> getStudents() {
         return studentRepository.findAll();
@@ -46,11 +46,11 @@ public class StudentService {
     }
 
     public List<Student> getStudentsByCourseId(String courseId) {
-        return studentCourseRepository.findStudentsByCourseId(courseId);
+        return courseRegistrationRepository.findStudentsByCourseId(courseId);
     }
 
-    public void addCourse(StudentCourse studentCourse) {
-        studentCourseRepository.save(studentCourse);
+    public void addCourse(CourseRegistration courseRegistration) {
+        courseRegistrationRepository.save(courseRegistration);
     }
 
 }

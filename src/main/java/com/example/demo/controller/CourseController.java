@@ -3,7 +3,8 @@ package com.example.demo.controller;
 import java.util.*;
 
 import com.example.demo.model.Course;
-import com.example.demo.model.StudentCourse;
+import com.example.demo.model.CourseRegistration;
+import com.example.demo.model.CourseRegistrationId;
 import com.example.demo.service.CourseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,8 @@ public class CourseController {
 	
 	// POST ( Add Student )
 	@RequestMapping(method = RequestMethod.POST, value = "student")
-	public void addStudent(@RequestBody StudentCourse studentCourse) {
+	public void addStudent(@RequestBody CourseRegistrationId studentCourseId) {
+		CourseRegistration studentCourse = new CourseRegistration(studentCourseId);
 		service.addStudent(studentCourse);
 	}
 

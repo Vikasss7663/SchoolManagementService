@@ -1,17 +1,19 @@
 package com.example.demo.model;
 
-import java.sql.Time;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Schedule {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int scheduleId;
     private String weekDay;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
 
     public int getScheduleId() {
         return this.scheduleId;
@@ -29,19 +31,19 @@ public class Schedule {
         this.weekDay = weekDay;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return this.startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return this.endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
