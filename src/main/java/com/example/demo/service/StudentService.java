@@ -1,11 +1,16 @@
 package com.example.demo.service;
 
+import com.example.demo.model.CourseRegistrationKey;
+import com.example.demo.dtos.CourseRegistrationDto;
+import com.example.demo.dtos.StudentDto;
 import com.example.demo.repository.CourseRegistrationRepository;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.model.Student;
 import com.example.demo.model.CourseRegistration;
 
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +38,11 @@ public class StudentService {
         return studentRepository.findById(id).get();
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(StudentDto studentDto) {
+        Student student = new Student();
+        student.setStudentId(UUID.randomUUID());
+        student.setStudentName(studentDto.getStudentName());
+
         studentRepository.save(student);
     }
 
@@ -49,7 +58,12 @@ public class StudentService {
         return courseRegistrationRepository.findStudentsByCourseId(courseId);
     }
 
-    public void addCourse(CourseRegistration courseRegistration) {
+    public void addCourse(CourseRegistrationDto courseRegistrationDto) {
+        CourseRegistrationKey courseRegistrationKey = new CourseRegistrationKey(courseRegistrationDto.getStudentId(), courseRegistrationDto.getCourseId());
+
+        CourseRegistration courseRegistration = new CourseRegistration();
+        courseRegistration.setCourseRegistrationKey(courseRegistrationKey);
+
         courseRegistrationRepository.save(courseRegistration);
     }
 

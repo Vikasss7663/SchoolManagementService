@@ -1,14 +1,14 @@
 package com.example.demo.model;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
 @Entity
+@NoArgsConstructor
 public class CourseRegistration {
-
     @EmbeddedId
     private CourseRegistrationKey courseRegistrationKey;
 
@@ -21,22 +21,6 @@ public class CourseRegistration {
     @MapsId("courseId")
     @JoinColumn(name = "course_id")
     private Course course;
-
-    public CourseRegistration() {
-    }
-    
-    public CourseRegistration(CourseRegistrationKey _courseRegistrationKey) {
-        courseRegistrationKey = _courseRegistrationKey;
-    }
-    
-    public CourseRegistrationKey getCourseRegistrationKey() {
-        return this.courseRegistrationKey;
-    }
-
-    public void setCourseRegistrationKey(CourseRegistrationKey courseRegistrationKey) {
-        this.courseRegistrationKey = courseRegistrationKey;
-    }
-
 }
 
 
