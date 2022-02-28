@@ -23,7 +23,7 @@ public class CourseService {
     }
 
     public List<Course> getCoursesBySemester(int semester) {
-        return courseRepository.findCoursesBySemester(semester);
+        return courseRepository.findBycourseSemester(semester);
     }
 
     public Course getCourse(String id) {
@@ -46,6 +46,7 @@ public class CourseService {
         return courseRegistrationRepository.findCoursesByStudentId(studentId);
     }
 
+    // TODO
     public void addStudent(CourseRegistration courseRegistration) {
         courseRegistrationRepository.save(courseRegistration);
     }

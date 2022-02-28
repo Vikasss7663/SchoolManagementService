@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.example.demo.model.Course;
 import com.example.demo.model.CourseRegistration;
-import com.example.demo.model.CourseRegistrationId;
 import com.example.demo.service.CourseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,12 @@ public class CourseController {
 		return new ArrayList<Course>(service.getCoursesBySemester(semester));
 	}	
 
+	// GET ( Get All Courses by Student Id)
+	@RequestMapping(method = RequestMethod.GET, value = "student/{id}")
+	public List<Course> getCoursesByStudentId(@PathVariable String id) {
+		return service.getCoursesByStudentId(id);
+	}
+
 	// GET ( Get Course by Id)
 	@RequestMapping(method = RequestMethod.GET, value = "{id}")
 	public Course getCourse(@PathVariable String id) {
@@ -44,9 +49,8 @@ public class CourseController {
 	
 	// POST ( Add Student )
 	@RequestMapping(method = RequestMethod.POST, value = "student")
-	public void addStudent(@RequestBody CourseRegistrationId studentCourseId) {
-		CourseRegistration studentCourse = new CourseRegistration(studentCourseId);
-		service.addStudent(studentCourse);
+	public void addStudent(@RequestBody CourseRegistration courseRegistraion) {
+		service.addStudent(courseRegistraion);
 	}
 
 	// PUT ( Update Course )
@@ -60,12 +64,6 @@ public class CourseController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
 	public void deleteCourse(@PathVariable String id) {
 		service.deleteCourse(id);
-	}
-
-	// GET ( Get All Courses by Student Id)
-	@RequestMapping(method = RequestMethod.GET, value = "student/{id}")
-	public List<Course> getCoursesByStudentId(@PathVariable String id) {
-		return service.getCoursesByStudentId(id);
 	}
 
 }

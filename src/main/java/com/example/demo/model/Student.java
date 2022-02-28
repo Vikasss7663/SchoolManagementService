@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -12,8 +13,11 @@ public class Student {
     
     @Id
     private String studentId;
+    @Column(nullable = false)
     private String studentName;
+    @Column(nullable = false)
     private int studentSemester;
+    @Column(nullable = false)
     private int studentYear;
 
     @OneToMany(mappedBy = "student")
@@ -49,6 +53,14 @@ public class Student {
 
     public void setStudentYear(int studentYear) {
         this.studentYear = studentYear;
+    }
+
+    public Set<CourseRegistration> getCourseRegistrations() {
+        return this.courseRegistrations;
+    }
+
+    public void setCourseRegistrations(Set<CourseRegistration> courseRegistrations) {
+        this.courseRegistrations = courseRegistrations;
     }
 
 }

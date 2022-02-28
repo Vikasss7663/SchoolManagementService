@@ -7,17 +7,17 @@ import javax.persistence.Embeddable;
 
 
 @Embeddable
-public class CourseRegistrationId implements Serializable{
+public class CourseRegistrationKey implements Serializable{
     
     @Column(name = "student_id")
     private String studentId;
     @Column(name = "course_id")
     private String courseId;
 
-    public CourseRegistrationId() {
+    public CourseRegistrationKey() {
     }
 
-    public CourseRegistrationId(String _studentId, String _courseId) {
+    public CourseRegistrationKey(String _studentId, String _courseId) {
         studentId = _studentId;
         courseId = _courseId;
     }
@@ -36,23 +36,6 @@ public class CourseRegistrationId implements Serializable{
 
     public void setCourseId(String courseId) {
         this.courseId = courseId;
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-
-        if(this == obj)
-            return true;
-
-        if(obj == null || obj.getClass()!= this.getClass())
-            return false;
-          
-        CourseRegistrationId studentCourseId = (CourseRegistrationId) obj;
-        
-        return (studentCourseId.courseId.equals(this.courseId) && 
-                studentCourseId.studentId.equals(this.studentId));
-
     }
 
 }

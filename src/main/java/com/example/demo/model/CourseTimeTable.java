@@ -1,14 +1,16 @@
 package com.example.demo.model;
 
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
-public class CourseTmeTable {
+@Entity
+public class CourseTimeTable {
 
     @EmbeddedId
-    private CourseTimeTableId courseTimeTableId;
+    private CourseTimeTableKey courseTimeTableId;
 
     @ManyToOne
     @MapsId("courseId")
@@ -26,11 +28,11 @@ public class CourseTmeTable {
     private Schedule schedule;
 
 
-    public CourseTimeTableId getCourseTimeTableId() {
+    public CourseTimeTableKey getCourseTimeTableId() {
         return this.courseTimeTableId;
     }
 
-    public void setCourseTimeTableId(CourseTimeTableId courseTimeTableId) {
+    public void setCourseTimeTableId(CourseTimeTableKey courseTimeTableId) {
         this.courseTimeTableId = courseTimeTableId;
     }
 

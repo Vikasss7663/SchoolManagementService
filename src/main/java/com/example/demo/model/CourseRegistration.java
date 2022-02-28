@@ -10,7 +10,7 @@ import javax.persistence.MapsId;
 public class CourseRegistration {
 
     @EmbeddedId
-    private CourseRegistrationId courseRegistrationId;
+    private CourseRegistrationKey courseRegistrationKey;
 
     @ManyToOne
     @MapsId("studentId")
@@ -25,16 +25,16 @@ public class CourseRegistration {
     public CourseRegistration() {
     }
     
-    public CourseRegistration(CourseRegistrationId _courseRegistrationId) {
-        courseRegistrationId = _courseRegistrationId;
+    public CourseRegistration(CourseRegistrationKey _courseRegistrationKey) {
+        courseRegistrationKey = _courseRegistrationKey;
     }
     
-    public CourseRegistrationId getCourseRegistrationId() {
-        return this.courseRegistrationId;
+    public CourseRegistrationKey getCourseRegistrationKey() {
+        return this.courseRegistrationKey;
     }
 
-    public void setCourseRegistrationId(CourseRegistrationId courseRegistrationId) {
-        this.courseRegistrationId = courseRegistrationId;
+    public void setCourseRegistrationKey(CourseRegistrationKey courseRegistrationKey) {
+        this.courseRegistrationKey = courseRegistrationKey;
     }
 
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class CourseTimeTableId implements Serializable {
+public class CourseTimeTableKey implements Serializable {
    
     private String courseId;
     private int locationId;

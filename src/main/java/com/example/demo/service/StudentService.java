@@ -22,11 +22,11 @@ public class StudentService {
     }
 
     public List<Student> getStudentsBySemester(int semester) {
-        return studentRepository.findStudentsBySemester(semester);
+        return studentRepository.findBystudentSemester(semester);
     }
 
     public List<Student> getStudentsByYear(int year) {
-        return studentRepository.findStudentsByYear(year);
+        return studentRepository.findBystudentYear(year);
     }
 
     public Student getStudent(String id) {
