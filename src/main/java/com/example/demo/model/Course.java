@@ -1,11 +1,14 @@
 package com.example.demo.model;
 
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Set;
+
 
 @Entity
 public class Course {
@@ -21,18 +24,25 @@ public class Course {
     private Set<CourseRegistration> courseRegistrations;
 
     @OneToMany(mappedBy = "course")
-    private Set<CourseTimeTable> courseTimeTables;  
+    private Set<CourseTimeTable> courseTimeTables;
 
-    public String getCourseId() {
-        return this.courseId;
+    public Course() { }
+    public Course(String courseId, String courseName, int courseSemester) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseSemester = courseSemester;
     }
 
-    public void setCourseCode(String courseId) {
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
 
     public String getCourseName() {
-        return this.courseName;
+        return courseName;
     }
 
     public void setCourseName(String courseName) {
@@ -40,27 +50,11 @@ public class Course {
     }
 
     public int getCourseSemester() {
-        return this.courseSemester;
+        return courseSemester;
     }
 
     public void setCourseSemester(int courseSemester) {
         this.courseSemester = courseSemester;
     }
-
-    public Set<CourseRegistration> getCourseRegistrations() {
-        return this.courseRegistrations;
-    }
-
-    public void setCourseRegistrations(Set<CourseRegistration> courseRegistrations) {
-        this.courseRegistrations = courseRegistrations;
-    }
-
-    public Set<CourseTimeTable> getCourseTimeTables() {
-        return this.courseTimeTables;
-    }
-
-    public void setCourseTimeTables(Set<CourseTimeTable> courseTimeTables) {
-        this.courseTimeTables = courseTimeTables;
-    } 
 
 }

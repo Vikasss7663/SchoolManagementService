@@ -1,22 +1,32 @@
 package com.example.demo.dtos;
 
-import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serializable;
 
-@Data
-public class CourseRegistrationDto {
+public class CourseRegistrationDto implements Serializable {
+
     @NotNull
-    @NotEmpty
-    @Size(min = 10, max = 10, message = "Student ID must be 10 characters")
+    private String courseId;
+
+    @NotNull
     private String studentId;
 
-    @NotNull
-    @NotEmpty
-    @Size(min = 10, max = 10, message = "Course ID must be 10 characters")
-    private String courseId;
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
 }
 
 

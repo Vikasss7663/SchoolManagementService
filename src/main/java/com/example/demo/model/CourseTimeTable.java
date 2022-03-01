@@ -1,16 +1,12 @@
 package com.example.demo.model;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 
 @Entity
 public class CourseTimeTable {
 
     @EmbeddedId
-    private CourseTimeTableKey courseTimeTableId;
+    private CourseTimeTableKey courseTimeTableKey;
 
     @ManyToOne
     @MapsId("courseId")
@@ -27,14 +23,35 @@ public class CourseTimeTable {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-
-    public CourseTimeTableKey getCourseTimeTableId() {
-        return this.courseTimeTableId;
+    public CourseTimeTableKey getCourseTimeTableKey() {
+        return courseTimeTableKey;
     }
 
-    public void setCourseTimeTableId(CourseTimeTableKey courseTimeTableId) {
-        this.courseTimeTableId = courseTimeTableId;
+    public void setCourseTimeTableKey(CourseTimeTableKey courseTimeTableKey) {
+        this.courseTimeTableKey = courseTimeTableKey;
     }
 
-    
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
 }

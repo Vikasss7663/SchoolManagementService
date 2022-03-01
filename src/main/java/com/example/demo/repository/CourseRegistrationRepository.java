@@ -11,10 +11,14 @@ import com.example.demo.model.Student;
 
 public interface CourseRegistrationRepository extends JpaRepository<CourseRegistration, CourseRegistrationKey> {
 
-    @Query("SELECT c FROM Course c INNER JOIN CourseRegistration cr ON c.courseId = cr.courseRegistrationKey.courseId WHERE cr.courseRegistrationKey.studentId = ?1")
-    public List<Course> findCoursesByStudentId(String studentId);
+    @Query("SELECT c FROM Course c INNER JOIN CourseRegistration cr " +
+            "ON c.courseId = cr.courseRegistrationKey.courseId " +
+            "WHERE cr.courseRegistrationKey.studentId = ?1")
+    List<Course> findCoursesByStudentId(String studentId);
 
-    @Query("SELECT s FROM Student s INNER JOIN CourseRegistration cr ON s.studentId = cr.courseRegistrationKey.studentId WHERE cr.courseRegistrationKey.courseId = ?1")
-    public List<Student> findStudentsByCourseId(String courseId);
+    @Query("SELECT s FROM Student s INNER JOIN CourseRegistration cr " +
+            "ON s.studentId = cr.courseRegistrationKey.studentId " +
+            "WHERE cr.courseRegistrationKey.courseId = ?1")
+    List<Student> findStudentsByCourseId(String courseId);
 
 }

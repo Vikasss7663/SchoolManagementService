@@ -1,10 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Student;
 import com.example.demo.dtos.CourseRegistrationDto;
 import com.example.demo.dtos.StudentDto;
+import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +15,11 @@ import java.util.List;
 public class StudentController {
 
     // Dependency Injection - Singleton
-    @Autowired
-    private StudentService service;
+    private final StudentService service;
+
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
 
     // GET ( Get All Students )
     @GetMapping
@@ -51,21 +53,14 @@ public class StudentController {
 
     // POST ( Add Student )
     @PostMapping
-    public void addStudent(@NonNull @RequestBody StudentDto student) {
-        service.addStudent(student);
-    }
-
-    // POST ( Add Course )
-    @PostMapping(value = "course")
-    public void addCourse(@NonNull @RequestBody CourseRegistrationDto courseRegistration) {
-        service.addCourse(courseRegistration);
+    public void addStudent(@NonNull @RequestBody StudentDto studentDto) {
+        service.addStudent(studentDto);
     }
 
     // PUT ( Update Student )
-    @PutMapping(value = "{id}")
-    public void updateStudent(@RequestBody Student student,
-                              @PathVariable int id) {
-        service.updateStudent(id, student);
+    @PutMapping
+    public void updateStudent(@RequestBody StudentDto studentDto) {
+        service.updateStudent(studentDto);
     }
 
     // DELETE ( Delete Student )

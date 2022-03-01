@@ -8,5 +8,6 @@ drop table location;
 delete from schedule where schedule_id = 1;
 delete from course_time_table where schedule_id = 1;
 
+explain course;
 explain schedule;
 explain location;

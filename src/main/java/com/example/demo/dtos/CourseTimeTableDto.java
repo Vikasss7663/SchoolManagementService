@@ -1,26 +1,17 @@
-package com.example.demo.model;
+package com.example.demo.dtos;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import java.io.Serializable;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-@Embeddable
-public class CourseTimeTableKey implements Serializable {
+public class CourseTimeTableDto {
 
-    @Column(name = "course_id")
+    @NotNull
+    @NotEmpty
     private String courseId;
-    @Column(name = "location_id")
     private int locationId;
-    @Column(name = "schedule_id")
     private int scheduleId;
 
-    public CourseTimeTableKey() { }
-
-    public CourseTimeTableKey(String courseId, int locationId, int scheduleId) {
-        this.courseId = courseId;
-        this.locationId = locationId;
-        this.scheduleId = scheduleId;
-    }
 
     public String getCourseId() {
         return courseId;
@@ -45,4 +36,10 @@ public class CourseTimeTableKey implements Serializable {
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
     }
+
 }
+
+
+
+
+

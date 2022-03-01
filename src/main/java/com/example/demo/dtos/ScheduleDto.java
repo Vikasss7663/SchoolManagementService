@@ -1,29 +1,20 @@
-package com.example.demo.model;
+package com.example.demo.dtos;
 
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+public class ScheduleDto {
 
-@Entity
-public class Schedule {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int scheduleId;
-    @Column(nullable = false)
+    @NotNull(message = "Week Day should not be null")
+    @NotEmpty
     private String weekDay;
-    @Column(nullable = false)
+    @NotNull(message = "Start Time should not be null")
+    @NotEmpty
     private String startTime;
-    @Column(nullable = false)
+    @NotNull(message = "End Time should not be null")
+    @NotEmpty
     private String endTime;
-
-    @OneToMany(mappedBy = "schedule")
-    private Set<CourseTimeTable> courseTimeTables;
 
     public int getScheduleId() {
         return scheduleId;

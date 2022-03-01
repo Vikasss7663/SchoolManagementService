@@ -1,14 +1,11 @@
 package com.example.demo.model;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
-@Data
+
 @Entity
-@NoArgsConstructor
 public class CourseRegistration {
+
     @EmbeddedId
     private CourseRegistrationKey courseRegistrationKey;
 
@@ -21,6 +18,30 @@ public class CourseRegistration {
     @MapsId("courseId")
     @JoinColumn(name = "course_id")
     private Course course;
+
+    public CourseRegistrationKey getCourseRegistrationKey() {
+        return courseRegistrationKey;
+    }
+
+    public void setCourseRegistrationKey(CourseRegistrationKey courseRegistrationKey) {
+        this.courseRegistrationKey = courseRegistrationKey;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 }
 
 

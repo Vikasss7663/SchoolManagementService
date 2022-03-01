@@ -1,31 +1,20 @@
-package com.example.demo.model;
+package com.example.demo.dtos;
 
-import lombok.Data;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-import java.util.Set;
+public class LocationDto {
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-@Entity
-public class Location {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationId;
-    @Column(nullable = false)
+    @NotNull(message = "Building should not be null")
+    @NotEmpty
     private String building;
-    @Column(nullable = false)
+    @NotNull(message = "Floor should not be null")
+    @NotEmpty
     private String floor;
-    @Column(nullable = false)
+    @NotNull(message = "Room should not be null")
+    @NotEmpty
     private String room;
-
-    @OneToMany(mappedBy = "location")
-    private Set<CourseTimeTable> courseTimeTables;
 
     public int getLocationId() {
         return locationId;

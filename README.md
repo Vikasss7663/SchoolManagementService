@@ -12,15 +12,19 @@ curl http://localhost:9090/course/semester={semester}
 
 curl http://localhost:9090/course/semester=7
 
-### GET ( Get All Courses by Student Id )
+### GET ( Get All Courses by Student ID )
 curl http://localhost:9090/course/student/{id}
 
 curl http://localhost:9090/course/student/"2018UEC1001"
 
-### GET ( Get Course by Course Id )
+### GET ( Get Course by Course ID )
 curl http://localhost:9090/course/{id}
 
 curl http://localhost:9090/course/"BMT499"
+
+### GET ( Get Course Schedule Location)
+curl http://localhost:9090/course/timetable
+
 
 ### POST ( Add Course )
 curl -d '{"courseId":"BMT499","courseName":"Basic Management Course","courseSemester":7}' -H "Content-Type: application/json" -X POST http://localhost:9090/course
@@ -32,6 +36,11 @@ curl -d '{"courseId":"ECT567","studentId":"2018UEC1001"}' -H "Content-Type: appl
 
 curl -d '{"courseId":"ECT567","studentId":"2018UEC1675"}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/student
 
+curl -d '{"courseId":"ECT566","studentId":"2018UEC1582"}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/student
+
+### POST ( Add Time Table )
+curl -d '{"courseId":"BMT499", "scheduleId":2, "locationId":2}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/timetable
+
 ### PUT ( Update Course )
 curl -d '{"courseId":"BMT499","courseName":"Updated Basic Management Course","courseSemester":7}' -H "Content-Type: application/json" -X PUT http://localhost:9090/course
 
@@ -39,7 +48,7 @@ curl -d '{"courseId":"BMT499","courseName":"Updated Basic Management Course","co
 ### DELETE ( Delete Course )
 curl -X DELETE http://localhost:9090/course/{id}
 
-curl -X DELETE http://localhost:9090/course/1
+curl -X DELETE http://localhost:9090/course/"BMT498"
 
 
 ## Student API Calls
@@ -69,15 +78,15 @@ curl -d '{"studentId":"2018UEC1023","studentName":"Satyanarayan","studentSemeste
 
 curl -d '{"studentId":"2018UEC1582","studentName":"Sushil Kumar","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
-curl -d '{"studentId":"2018UEC1675","studentName":"Manish Singh","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
+curl -d '{"studentId":"2018UEC1003","studentName":"Vishwas Bansal","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
 ### POST ( Add Course )
-curl -d '{"courseId":"BMT499","studentId":"2018UEC1001"}' -H "Content-Type: application/json" -X POST http://localhost:9090/student/course
+curl -d '{"courseId":"BMT499","studentId":"2018UEC1705"}' -H "Content-Type: application/json" -X POST http://localhost:9090/student/course
 
 curl -d '{"courseId":"BMT499","studentId":"2018UEC1675"}' -H "Content-Type: application/json" -X POST http://localhost:9090/student/course
 
 ### PUT ( Update Student )
-curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh ( Vikas )","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X PUT http://localhost:9090/student/1
+curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh Shekhawat","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X PUT http://localhost:9090/student
 
 
 ### DELETE ( Delete Student )
@@ -94,13 +103,13 @@ curl http://localhost:9090/schedule
 ### GET ( Get Schedule)
 curl http://localhost:9090/schedule/{id}
 
-curl http://localhost:9090/schedule/i
+curl http://localhost:9090/schedule/1
 
 ### POST ( Add Schedule )
 curl -d '{"weekDay":"MONDAY","startTime":"01:00 PM","endTime":"02:00 PM"}' -H "Content-Type: application/json" -X POST http://localhost:9090/schedule
 
 ### PUT ( Update Schedule )
-curl -d '{"weekDay":"MONDAY","startTime":"01:00 PM","endTime":"02:00 PM"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/schedule/1
+curl -d '{"scheduleId":7, "weekDay":"MONDAY","startTime":"01:00 PM","endTime":"02:00 PM"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/schedule
 
 
 ### DELETE ( Delete Schedule )
@@ -125,7 +134,7 @@ curl -d '{"building":"VLTC","floor":"First Floor","room":"L304"}' -H "Content-Ty
 curl -d '{"building":"Chemistry Department","floor":"Ground Floor","room":"25"}' -H "Content-Type: application/json" -X POST http://localhost:9090/location/
 
 ### PUT ( Update Location )
-curl -d '{"building":"VLTC - NEW","floor":"First Floor","room":"L304"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/location/4
+curl -d '{"locationId": 1,"building":"VLTC - NEW","floor":"First Floor","room":"L304"}' -H "Content-Type: application/json" -X PUT http://localhost:9090/location
 
 ### DELETE ( Delete Location )
 curl -X DELETE http://localhost:9090/location/{id}
