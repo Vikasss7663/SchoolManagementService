@@ -3,7 +3,7 @@ package com.example.demo.dtos;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-public class CourseRegistrationDto implements Serializable {
+public class RegistrationDto implements Serializable {
 
     @NotNull
     private String courseId;

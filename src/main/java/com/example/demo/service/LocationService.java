@@ -31,7 +31,6 @@ public class LocationService {
 
     public void updateLocation(LocationDto locationDto) {
         Location location = getLocationInstanceFromDto(locationDto);
-        location.setLocationId(locationDto.getLocationId());
         locationRepository.save(location);
     }
 
@@ -41,6 +40,7 @@ public class LocationService {
 
     private Location getLocationInstanceFromDto(LocationDto locationDto) {
         Location location = new Location();
+        location.setLocationId(locationDto.getLocationId());
         location.setBuilding(locationDto.getBuilding());
         location.setFloor(locationDto.getFloor());
         location.setRoom(locationDto.getRoom());

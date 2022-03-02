@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CourseTimeTableKey implements Serializable {
+public class TimeTableKey implements Serializable {
 
     @Column(name = "course_id")
     private String courseId;
@@ -14,9 +14,9 @@ public class CourseTimeTableKey implements Serializable {
     @Column(name = "schedule_id")
     private int scheduleId;
 
-    public CourseTimeTableKey() { }
+    public TimeTableKey() { }
 
-    public CourseTimeTableKey(String courseId, int locationId, int scheduleId) {
+    public TimeTableKey(String courseId, int locationId, int scheduleId) {
         this.courseId = courseId;
         this.locationId = locationId;
         this.scheduleId = scheduleId;

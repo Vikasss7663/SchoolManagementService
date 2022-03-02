@@ -35,7 +35,6 @@ public class ScheduleService {
 
     public void updateSchedule(ScheduleDto scheduleDto) {
         Schedule schedule = getScheduleInstanceFromDto(scheduleDto);
-        schedule.setScheduleId(scheduleDto.getScheduleId());
         scheduleRepository.save(schedule);
     }
 
@@ -45,6 +44,7 @@ public class ScheduleService {
 
     private Schedule getScheduleInstanceFromDto(ScheduleDto scheduleDto) {
         Schedule schedule = new Schedule();
+        schedule.setScheduleId(scheduleDto.getScheduleId());
         schedule.setStartTime(scheduleDto.getStartTime());
         schedule.setEndTime(scheduleDto.getEndTime());
         schedule.setWeekDay(scheduleDto.getWeekDay());

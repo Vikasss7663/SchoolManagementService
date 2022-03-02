@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import lombok.Data;
-
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -25,7 +23,7 @@ public class Location {
     private String room;
 
     @OneToMany(mappedBy = "location")
-    private Set<CourseTimeTable> courseTimeTables;
+    private Set<TimeTable> timeTables;
 
     public int getLocationId() {
         return locationId;

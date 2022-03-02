@@ -1,7 +1,5 @@
 package com.example.demo.model;
 
-import lombok.*;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +19,7 @@ public class Student {
     private int studentYear;
 
     @OneToMany(mappedBy = "student")
-    private Set<CourseRegistration> courseRegistrations;
+    private Set<Registration> registrations;
 
     public Student() {}
 

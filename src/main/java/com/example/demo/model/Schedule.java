@@ -23,7 +23,7 @@ public class Schedule {
     private String endTime;
 
     @OneToMany(mappedBy = "schedule")
-    private Set<CourseTimeTable> courseTimeTables;
+    private Set<TimeTable> timeTables;
 
     public int getScheduleId() {
         return scheduleId;

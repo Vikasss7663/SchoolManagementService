@@ -1,0 +1,42 @@
+package com.example.demo.repository;
+
+import com.example.demo.model.TimeTable;
+import com.example.demo.model.TimeTableKey;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import javax.persistence.Tuple;
+import java.util.List;
+
+public interface TimeTableRepository extends JpaRepository<TimeTable, TimeTableKey> {
+
+    @Query(value = "select c.course_id,c.course_name,l.building,l.floor,l.room,s.week_day,s.start_time,s.end_time from course as c " +
+            "inner join time_table as ctt on c.course_id = ctt.course_id " +
+            "inner join location as l on l.location_id = ctt.location_id " +
+            "inner join schedule as s on s.schedule_id = ctt.schedule_id", nativeQuery = true)
+    List<Tuple> findCourseScheduleLocation();
+
+    @Query(value = "select c.course_id,c.course_name,l.building,l.floor,l.room,s.week_day,s.start_time,s.end_time from course as c " +
+            "inner join time_table as ctt on c.course_id = ctt.course_id " +
+            "inner join location as l on l.location_id = ctt.location_id " +
+            "inner join schedule as s on s.schedule_id = ctt.schedule_id where c.course_id = ?1", nativeQuery = true)
+    List<Tuple> findCourseScheduleLocationByCourseId(String courseId);
+
+
+    @Query(value = "select c.course_id,c.course_name,l.building,l.floor,l.room,s.week_day,s.start_time,s.end_time from course as c " +
+            "inner join time_table as ctt on c.course_id = ctt.course_id " +
+            "inner join location as l on l.location_id = ctt.location_id " +
+            "inner join schedule as s on s.schedule_id = ctt.schedule_id where l.location_id = ?1", nativeQuery = true)
+    List<Tuple> findCourseScheduleLocationByLocationId(int locationId);
+
+
+    @Query(value = "select c.course_id, c.course_name,l.building,l.floor,l.room,sd.week_day,sd.start_time,sd.end_time from course as c " +
+            "inner join registration as cr on c.course_id = cr.course_id " +
+            "inner join student as s on s.student_id = cr.student_id " +
+            "inner join time_table as ctt on c.course_id = ctt.course_id " +
+            "inner join location as l on l.location_id = ctt.location_id " +
+            "inner join schedule as sd on sd.schedule_id = ctt.schedule_id where s.student_id = ?1", nativeQuery = true)
+    List<Tuple> findCourseScheduleLocationByStudentId(String studentId);
+
+
+}

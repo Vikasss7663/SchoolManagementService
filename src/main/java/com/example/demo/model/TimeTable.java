@@ -3,10 +3,10 @@ package com.example.demo.model;
 import javax.persistence.*;
 
 @Entity
-public class CourseTimeTable {
+public class TimeTable {
 
     @EmbeddedId
-    private CourseTimeTableKey courseTimeTableKey;
+    private TimeTableKey timeTableKey;
 
     @ManyToOne
     @MapsId("courseId")
@@ -23,12 +23,12 @@ public class CourseTimeTable {
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    public CourseTimeTableKey getCourseTimeTableKey() {
-        return courseTimeTableKey;
+    public TimeTableKey getCourseTimeTableKey() {
+        return timeTableKey;
     }
 
-    public void setCourseTimeTableKey(CourseTimeTableKey courseTimeTableKey) {
-        this.courseTimeTableKey = courseTimeTableKey;
+    public void setCourseTimeTableKey(TimeTableKey timeTableKey) {
+        this.timeTableKey = timeTableKey;
     }
 
     public Course getCourse() {

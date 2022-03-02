@@ -4,10 +4,10 @@ import javax.persistence.*;
 
 
 @Entity
-public class CourseRegistration {
+public class Registration {
 
     @EmbeddedId
-    private CourseRegistrationKey courseRegistrationKey;
+    private RegistrationKey registrationKey;
 
     @ManyToOne
     @MapsId("studentId")
@@ -19,12 +19,12 @@ public class CourseRegistration {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    public CourseRegistrationKey getCourseRegistrationKey() {
-        return courseRegistrationKey;
+    public RegistrationKey getRegistrationKey() {
+        return registrationKey;
     }
 
-    public void setCourseRegistrationKey(CourseRegistrationKey courseRegistrationKey) {
-        this.courseRegistrationKey = courseRegistrationKey;
+    public void setRegistrationKey(RegistrationKey registrationKey) {
+        this.registrationKey = registrationKey;
     }
 
     public Student getStudent() {

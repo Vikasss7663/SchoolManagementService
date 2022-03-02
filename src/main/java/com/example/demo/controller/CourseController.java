@@ -1,17 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dtos.CourseDto;
-import com.example.demo.dtos.CourseRegistrationDto;
-import com.example.demo.dtos.CourseScheduleLocationDto;
-import com.example.demo.dtos.CourseTimeTableDto;
 import com.example.demo.model.Course;
 import com.example.demo.service.CourseService;
 import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.Tuple;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +14,7 @@ import java.util.List;
 @RequestMapping("/course")
 public class CourseController {
 
-	private Logger log = LoggerFactory.getLogger(CourseController.class);
+	private final Logger log = LoggerFactory.getLogger(CourseController.class);
 
 	private final CourseService service;
 
@@ -40,28 +35,15 @@ public class CourseController {
 	}
 
 	// GET ( Get All Courses By Semester )
-	@GetMapping(value = "semester={semester}")
+	@GetMapping(value = "semester/{semester}")
 	public List<Course> getCoursesBySemester(@PathVariable int semester) {
 		return new ArrayList<>(service.getCoursesBySemester(semester));
-	}	
-
-	// GET ( Get All Courses by Student ID)
-	@GetMapping(value = "student/{id}")
-	public List<Course> getCoursesByStudentId(@NonNull @PathVariable String id) {
-		return service.getCoursesByStudentId(id);
 	}
 
 	// GET ( Get Course by ID)
 	@GetMapping(value = "{id}")
 	public Course getCourse(@NonNull @PathVariable String id) {
 		return service.getCourse(id);
-	}	
-
-
-	// GET ( Get Course Schedule Location )
-	@GetMapping(value = "timetable")
-	public List<CourseScheduleLocationDto> getCourseScheduleLocation() {
-		return service.getCourseScheduleLocation();
 	}
 
 
@@ -70,18 +52,8 @@ public class CourseController {
 	public void addCourse(@NonNull @RequestBody CourseDto courseDto) {
 		service.addCourse(courseDto);
 	}
-	
-	// POST ( Add Student )
-	@PostMapping(value = "student")
-	public void addStudent(@NonNull @RequestBody CourseRegistrationDto courseRegistrationDto) {
-		service.addStudent(courseRegistrationDto);
-	}
 
-	// POST ( Add Time Table )
-	@PostMapping(value = "timetable")
-	public void addTimeTable(@NonNull @RequestBody CourseTimeTableDto courseTimeTableDto) {
-		service.addTimeTable(courseTimeTableDto);
-	}
+
 
 	// PUT ( Update Course )
 	@PutMapping

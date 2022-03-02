@@ -5,7 +5,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class CourseRegistrationKey implements Serializable {
+public class RegistrationKey implements Serializable {
 
     @Column(name = "student_id")
     private String studentId;
@@ -13,10 +13,10 @@ public class CourseRegistrationKey implements Serializable {
     @Column(name = "course_id")
     private String courseId;
 
-    public CourseRegistrationKey() {
+    public RegistrationKey() {
     }
 
-    public CourseRegistrationKey(String courseId, String studentId) {
+    public RegistrationKey(String courseId, String studentId) {
         this.courseId = courseId;
         this.studentId = studentId;
     }

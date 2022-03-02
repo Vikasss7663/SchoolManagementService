@@ -1,15 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.dtos.CourseRegistrationDto;
 import com.example.demo.dtos.StudentDto;
-import com.example.demo.model.Course;
-import com.example.demo.model.CourseRegistration;
-import com.example.demo.model.CourseRegistrationKey;
 import com.example.demo.model.Student;
-import com.example.demo.repository.CourseRegistrationRepository;
-import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,13 +11,9 @@ import java.util.List;
 public class StudentService {
     
     private final StudentRepository studentRepository;
-    private final CourseRegistrationRepository courseRegistrationRepository;
-    private final CourseRepository courseRepository;
 
-    public StudentService(StudentRepository studentRepository, CourseRegistrationRepository courseRegistrationRepository, CourseRepository courseRepository) {
+    public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-        this.courseRegistrationRepository = courseRegistrationRepository;
-        this.courseRepository = courseRepository;
     }
 
     public List<Student> getStudents() {
@@ -55,10 +44,6 @@ public class StudentService {
 
     public void deleteStudent(String id) {
         studentRepository.deleteById(id);
-    }
-
-    public List<Student> getStudentsByCourseId(String courseId) {
-        return courseRegistrationRepository.findStudentsByCourseId(courseId);
     }
 
 

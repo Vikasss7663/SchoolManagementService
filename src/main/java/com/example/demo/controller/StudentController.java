@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dtos.CourseRegistrationDto;
 import com.example.demo.dtos.StudentDto;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
@@ -28,24 +27,18 @@ public class StudentController {
     }
 
     // GET ( Get All Students By Semester )
-    @GetMapping(value = "semester={semester}")
+    @GetMapping(value = "semester/{semester}")
     public List<Student> getStudentsBySemester(@PathVariable int semester) {
         return new ArrayList<>(service.getStudentsBySemester(semester));
     }
 
     // GET ( Get All Students By Year )
-    @GetMapping(value = "year={year}")
+    @GetMapping(value = "year/{year}")
     public List<Student> getStudentsByYear(@NonNull @PathVariable int year) {
         return new ArrayList<>(service.getStudentsByYear(year));
     }
 
-    // GET ( Get All Students by Course Id)
-    @GetMapping(value = "course/{id}")
-    public List<Student> getStudentsByCourseId(@NonNull @PathVariable String id) {
-        return service.getStudentsByCourseId(id);
-    }
-
-    // GET ( Get Student by Id)
+    // GET ( Get Student by ID)
     @GetMapping(value = "{id}")
     public Student getStudent(@NonNull @PathVariable String id) {
         return service.getStudent(id);

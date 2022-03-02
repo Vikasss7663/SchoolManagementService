@@ -1,8 +1,5 @@
 package com.example.demo.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,10 +18,10 @@ public class Course {
     private int courseSemester;
 
     @OneToMany(mappedBy = "course")
-    private Set<CourseRegistration> courseRegistrations;
+    private Set<Registration> registrations;
 
     @OneToMany(mappedBy = "course")
-    private Set<CourseTimeTable> courseTimeTables;
+    private Set<TimeTable> timeTables;
 
     public Course() { }
     public Course(String courseId, String courseName, int courseSemester) {
