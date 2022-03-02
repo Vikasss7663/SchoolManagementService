@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>873f17db-d6d6-41bd-ad55-6d80598930be</OriginalElement>
+  <nodes>
+    <node x="460.0" y="0.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.schedule</node>
+    <node x="462.0" y="170.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.time_table</node>
+    <node x="0.0" y="335.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.hibernate_sequence</node>
+    <node x="667.0" y="0.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.location</node>
+    <node x="0.0" y="0.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.student</node>
+    <node x="127.09999999999997" y="181.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.registration</node>
+    <node x="233.0" y="11.0">873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.course</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.time_table" target="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.course" relationship="REFERENCES">
+      <point x="-61.0" y="-60.0" />
+      <point x="492.5" y="145.0" />
+      <point x="336.5" y="145.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+    <edge source="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.registration" target="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.student" relationship="REFERENCES">
+      <point x="-47.5" y="-49.0" />
+      <point x="174.59999999999997" y="145.0" />
+      <point x="106.5" y="145.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.time_table" target="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.schedule" relationship="REFERENCES">
+      <point x="0.0" y="-60.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.time_table" target="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.location" relationship="REFERENCES">
+      <point x="61.0" y="-60.0" />
+      <point x="614.5" y="145.0" />
+      <point x="752.5" y="145.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+    <edge source="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.registration" target="873f17db-d6d6-41bd-ad55-6d80598930be.TABLE:demo.course" relationship="REFERENCES">
+      <point x="47.5" y="-49.0" />
+      <point x="269.59999999999997" y="145.0" />
+      <point x="336.5" y="145.0" />
+      <point x="0.0" y="49.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="419.0" y="194.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

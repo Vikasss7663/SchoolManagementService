@@ -122,22 +122,22 @@ curl -X DELETE http://localhost:9090/location/5
 ## Registration
 
 ### GET ( Get All Courses by Student ID )
-curl http://localhost:9090/course/student/{id}
+curl http://localhost:9090/registration/student/{id}
 
-curl http://localhost:9090/course/student/"2018UEC1001"
+curl http://localhost:9090/registration/student/"2018UEC1001"
 
 
 ### GET ( Get All Students by Course ID )
-curl http://localhost:9090/student/course/{id}
+curl http://localhost:9090/registration/course/{id}
 
-curl http://localhost:9090/student/course/"BMT499"
+curl http://localhost:9090/registration/course/"BMT499"
 
 ### POST ( Add Student )
-curl -d '{"courseId":"ECT567","studentId":"2018UEC1001"}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/student
+curl -d '{"courseId":"ECT567","studentId":"2018UEC1001"}' -H "Content-Type: application/json" -X POST http://localhost:9090/registration/student
 
-curl -d '{"courseId":"ECT567","studentId":"2018UEC1675"}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/student
+curl -d '{"courseId":"ECT567","studentId":"2018UEC1675"}' -H "Content-Type: application/json" -X POST http://localhost:9090/registration/student
 
-curl -d '{"courseId":"BMT499","studentId":"2018UEC1582"}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/student
+curl -d '{"courseId":"BMT499","studentId":"2018UEC1582"}' -H "Content-Type: application/json" -X POST http://localhost:9090/registration/student
 
 
 
@@ -156,4 +156,4 @@ curl http://localhost:9090/timetable/location/{location_id}
 curl http://localhost:9090/timetable/student/{student_id}
 
 ### POST ( Add Time Table )
-curl -d '{"courseId":"BMT499", "scheduleId":2, "locationId":2}' -H "Content-Type: application/json" -X POST http://localhost:9090/course/timetable
+curl -d '{"courseId":"BMT499", "scheduleId":2, "locationId":2}' -H "Content-Type: application/json" -X POST http://localhost:9090/timetable
