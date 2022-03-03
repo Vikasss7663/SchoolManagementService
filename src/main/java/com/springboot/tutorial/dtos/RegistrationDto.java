@@ -1,41 +1,23 @@
 package com.springboot.tutorial.dtos;
 
+import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Data
 public class RegistrationDto implements Serializable {
 
     private int id;
 
-    @NotNull
+    @NotNull(message = "Course Id can not be null")
+    @NotEmpty
     private String courseId;
 
-    @NotNull
+    @NotNull(message = "Student Id can not be null")
+    @NotEmpty
     private String studentId;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
 
 }
 

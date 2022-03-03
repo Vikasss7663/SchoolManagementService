@@ -1,5 +1,8 @@
 package com.springboot.tutorial.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +10,8 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class Student {
 
     @Id
@@ -27,38 +32,6 @@ public class Student {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentSemester = studentSemester;
-        this.studentYear = studentYear;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public int getStudentSemester() {
-        return studentSemester;
-    }
-
-    public void setStudentSemester(int studentSemester) {
-        this.studentSemester = studentSemester;
-    }
-
-    public int getStudentYear() {
-        return studentYear;
-    }
-
-    public void setStudentYear(int studentYear) {
         this.studentYear = studentYear;
     }
 

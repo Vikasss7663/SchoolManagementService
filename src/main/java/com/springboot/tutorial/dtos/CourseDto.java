@@ -1,11 +1,14 @@
 package com.springboot.tutorial.dtos;
 
+import lombok.Data;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+@Data
 public class CourseDto implements Serializable {
 
     @NotNull(message = "Course Id cannot be null")
@@ -21,27 +24,4 @@ public class CourseDto implements Serializable {
     @Max(value = 8, message = "Semester should not be greater than 8")
     private int courseSemester;
 
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public int getCourseSemester() {
-        return courseSemester;
-    }
-
-    public void setCourseSemester(int courseSemester) {
-        this.courseSemester = courseSemester;
-    }
 }

@@ -1,8 +1,8 @@
 package com.springboot.tutorial.controller;
 
 import com.springboot.tutorial.dtos.StudentDto;
-import com.springboot.tutorial.model.Student;
 import com.springboot.tutorial.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,36 +11,32 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
+@RequiredArgsConstructor
 public class StudentController {
 
-    // Dependency Injection - Singleton
     private final StudentService service;
-
-    public StudentController(StudentService service) {
-        this.service = service;
-    }
 
     // GET ( Get All Students )
     @GetMapping
-    public List<Student> getStudents() {
+    public List<StudentDto> getStudents() {
         return new ArrayList<>(service.getStudents());
     }
 
     // GET ( Get All Students By Semester )
     @GetMapping(value = "semester/{semester}")
-    public List<Student> getStudentsBySemester(@PathVariable int semester) {
+    public List<StudentDto> getStudentsBySemester(@PathVariable int semester) {
         return new ArrayList<>(service.getStudentsBySemester(semester));
     }
 
     // GET ( Get All Students By Year )
     @GetMapping(value = "year/{year}")
-    public List<Student> getStudentsByYear(@NonNull @PathVariable int year) {
+    public List<StudentDto> getStudentsByYear(@NonNull @PathVariable int year) {
         return new ArrayList<>(service.getStudentsByYear(year));
     }
 
     // GET ( Get Student by ID)
     @GetMapping(value = "{id}")
-    public Student getStudent(@NonNull @PathVariable String id) {
+    public StudentDto getStudent(@NonNull @PathVariable String id) {
         return service.getStudent(id);
     }
 

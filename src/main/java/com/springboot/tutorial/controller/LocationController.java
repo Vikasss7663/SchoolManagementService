@@ -3,6 +3,7 @@ package com.springboot.tutorial.controller;
 import com.springboot.tutorial.dtos.LocationDto;
 import com.springboot.tutorial.model.Location;
 import com.springboot.tutorial.service.LocationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,23 +11,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/location")
+@RequiredArgsConstructor
 public class LocationController {
     
 	private final LocationService service;
 
-	public LocationController(LocationService service) {
-		this.service = service;
-	}
-
 	// GET ( Get All Locations )
 	@GetMapping
-	public List<Location> getLocations() {
+	public List<LocationDto> getLocations() {
 		return new ArrayList<>(service.getLocations());
 	}
 
 	// GET ( Get Location by ID)
 	@GetMapping(value = "{id}")
-	public Location getLocation(@PathVariable int id) {
+	public LocationDto getLocation(@PathVariable int id) {
 		return service.getLocation(id);
 	}	
 

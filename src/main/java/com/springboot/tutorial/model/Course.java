@@ -1,5 +1,8 @@
 package com.springboot.tutorial.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +11,8 @@ import java.util.Set;
 
 
 @Entity
+@Getter
+@Setter
 public class Course {
 
     @Id
@@ -27,30 +32,6 @@ public class Course {
     public Course(String courseId, String courseName, int courseSemester) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.courseSemester = courseSemester;
-    }
-
-    public String getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public int getCourseSemester() {
-        return courseSemester;
-    }
-
-    public void setCourseSemester(int courseSemester) {
         this.courseSemester = courseSemester;
     }
 

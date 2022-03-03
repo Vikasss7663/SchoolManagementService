@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentRepository extends JpaRepository<Student, String> {
     
-    public List<Student> findBystudentSemester(int semester);
+    List<Student> findBystudentSemester(int semester);
 
-    public List<Student> findBystudentYear(int year);
+    List<Student> findBystudentYear(int year);
     
 }

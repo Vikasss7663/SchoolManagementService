@@ -8,27 +8,25 @@ import com.springboot.tutorial.model.Schedule;
 import com.springboot.tutorial.service.ScheduleService;
 
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/schedule")
+@RequiredArgsConstructor
 public class ScheduleController {
     
 	private final ScheduleService service;
 
-	public ScheduleController(ScheduleService service) {
-		this.service = service;
-	}
-
 	// GET ( Get All Schedules )
 	@GetMapping
-	public List<Schedule> getSchedules() {
+	public List<ScheduleDto> getSchedules() {
 		return new ArrayList<>(service.getSchedules());
 	}
 
 	// GET ( Get Schedule by Id)
 	@GetMapping(value = "{id}")
-	public Schedule getSchedule(@PathVariable int id) {
+	public ScheduleDto getSchedule(@PathVariable int id) {
 		return service.getSchedule(id);
 	}	
 

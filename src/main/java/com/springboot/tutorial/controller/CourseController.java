@@ -4,6 +4,7 @@ import com.springboot.tutorial.dtos.CourseDto;
 import com.springboot.tutorial.model.Course;
 import com.springboot.tutorial.service.CourseService;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -12,15 +13,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/course")
+@RequiredArgsConstructor
 public class CourseController {
 
 	private final Logger log = LoggerFactory.getLogger(CourseController.class);
 
 	private final CourseService service;
-
-	public CourseController(CourseService service) {
-		this.service = service;
-	}
 
 	@GetMapping(value = "test")
 	public String test() {
@@ -30,29 +28,27 @@ public class CourseController {
 
 	// GET ( Get All Courses )
 	@GetMapping
-	public List<Course> getCourses() {
+	public List<CourseDto> getCourses() {
 		return new ArrayList<>(service.getCourses());
 	}
 
 	// GET ( Get All Courses By Semester )
 	@GetMapping(value = "semester/{semester}")
-	public List<Course> getCoursesBySemester(@PathVariable int semester) {
+	public List<CourseDto> getCoursesBySemester(@PathVariable int semester) {
 		return new ArrayList<>(service.getCoursesBySemester(semester));
 	}
 
 	// GET ( Get Course by ID)
 	@GetMapping(value = "{id}")
-	public Course getCourse(@NonNull @PathVariable String id) {
+	public CourseDto getCourse(@NonNull @PathVariable String id) {
 		return service.getCourse(id);
 	}
-
 
 	// POST ( Add Course )
 	@PostMapping
 	public void addCourse(@NonNull @RequestBody CourseDto courseDto) {
 		service.addCourse(courseDto);
 	}
-
 
 
 	// PUT ( Update Course )

@@ -6,27 +6,29 @@ import com.springboot.tutorial.dtos.CourseDto;
 
 import com.springboot.tutorial.model.Course;
 import com.springboot.tutorial.repository.CourseRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CourseService {
 
     private final CourseRepository courseRepository;
 
-    public CourseService(CourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
+    public List<CourseDto> getCourses() {
+        List<CourseDto> courseDtos = new ArrayList<>();
+        courseRepository.findAll().forEach(it -> courseDtos.add(getCourseDtoInstance(it)));
+        return courseDtos;
     }
 
-    public List<Course> getCourses() {
-        return courseRepository.findAll();
+    public List<CourseDto> getCoursesBySemester(int semester) {
+        List<CourseDto> courseDtos = new ArrayList<>();
+        courseRepository.findBycourseSemester(semester).forEach(it -> courseDtos.add(getCourseDtoInstance(it)));
+        return courseDtos;
     }
 
-    public List<Course> getCoursesBySemester(int semester) {
-        return courseRepository.findBycourseSemester(semester);
-    }
-
-    public Course getCourse(String id) {
-        return courseRepository.findById(id).get();
+    public CourseDto getCourse(String id) {
+        return getCourseDtoInstance(courseRepository.findById(id).get());
     }
 
     public void addCourse(CourseDto courseDto) {
@@ -49,6 +51,15 @@ public class CourseService {
         course.setCourseName(courseDto.getCourseName());
         course.setCourseSemester(courseDto.getCourseSemester());
         return course;
+    }
+
+    private CourseDto getCourseDtoInstance(Course course) {
+        if(course == null) return new CourseDto();
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(course.getCourseId());
+        courseDto.setCourseName(course.getCourseName());
+        courseDto.setCourseSemester(course.getCourseSemester());
+        return courseDto;
     }
 
 }

@@ -10,6 +10,7 @@ import com.springboot.tutorial.repository.CourseRepository;
 import com.springboot.tutorial.repository.TimeTableRepository;
 import com.springboot.tutorial.repository.LocationRepository;
 import com.springboot.tutorial.repository.ScheduleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Tuple;
@@ -17,19 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TimeTableService {
 
     private final CourseRepository courseRepository;
     private final ScheduleRepository scheduleRepository;
     private final LocationRepository locationRepository;
     private final TimeTableRepository timeTableRepository;
-
-    public TimeTableService(CourseRepository courseRepository, ScheduleRepository scheduleRepository, LocationRepository locationRepository, TimeTableRepository timeTableRepository) {
-        this.courseRepository = courseRepository;
-        this.scheduleRepository = scheduleRepository;
-        this.locationRepository = locationRepository;
-        this.timeTableRepository = timeTableRepository;
-    }
 
     public void addTimeTable(TimeTableDto timeTableDto) {
 

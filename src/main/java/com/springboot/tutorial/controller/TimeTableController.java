@@ -4,19 +4,17 @@ import com.springboot.tutorial.dtos.CourseScheduleLocationDto;
 import com.springboot.tutorial.dtos.TimeTableDto;
 import com.springboot.tutorial.service.TimeTableService;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/timetable")
+@RequiredArgsConstructor
 public class TimeTableController {
 
     private final TimeTableService service;
-
-    public TimeTableController(TimeTableService service) {
-        this.service = service;
-    }
 
     // GET ( Get Course Schedule Location )
     @GetMapping

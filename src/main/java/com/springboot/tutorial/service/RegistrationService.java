@@ -9,6 +9,7 @@ import com.springboot.tutorial.model.Student;
 import com.springboot.tutorial.repository.CourseRepository;
 import com.springboot.tutorial.repository.RegistrationRepository;
 import com.springboot.tutorial.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Tuple;
@@ -16,18 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RegistrationService {
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
     private final RegistrationRepository registrationRepository;
-
-
-    public RegistrationService(CourseRepository courseRepository, StudentRepository studentRepository, RegistrationRepository registrationRepository) {
-        this.courseRepository = courseRepository;
-        this.studentRepository = studentRepository;
-        this.registrationRepository = registrationRepository;
-    }
 
     public List<CourseDto> getCoursesByStudentId(String studentId) {
         List<Tuple> tuples = registrationRepository.findCoursesByStudentId(studentId);

@@ -3,33 +3,38 @@ package com.springboot.tutorial.service;
 import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.model.Student;
 import com.springboot.tutorial.repository.StudentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
     
     private final StudentRepository studentRepository;
 
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public List<StudentDto> getStudents() {
+        List<StudentDto> studentDtos = new ArrayList<>();
+        studentRepository.findAll().forEach(it -> studentDtos.add(getStudentDtoInstance(it)));
+        return studentDtos;
     }
 
-    public List<Student> getStudents() {
-        return studentRepository.findAll();
+    public List<StudentDto> getStudentsBySemester(int semester) {
+        List<StudentDto> studentDtos = new ArrayList<>();
+        studentRepository.findBystudentSemester(semester).forEach(it -> studentDtos.add(getStudentDtoInstance(it)));
+        return studentDtos;
     }
 
-    public List<Student> getStudentsBySemester(int semester) {
-        return studentRepository.findBystudentSemester(semester);
+    public List<StudentDto> getStudentsByYear(int year) {
+        List<StudentDto> studentDtos = new ArrayList<>();
+        studentRepository.findBystudentYear(year).forEach(it -> studentDtos.add(getStudentDtoInstance(it)));
+        return studentDtos;
     }
 
-    public List<Student> getStudentsByYear(int year) {
-        return studentRepository.findBystudentYear(year);
-    }
-
-    public Student getStudent(String id) {
-        return studentRepository.findById(id).get();
+    public StudentDto getStudent(String id) {
+        return getStudentDtoInstance(studentRepository.findById(id).get());
     }
 
     public void addStudent(StudentDto studentDto) {
@@ -54,6 +59,16 @@ public class StudentService {
         student.setStudentSemester(studentDto.getStudentSemester());
         student.setStudentYear(studentDto.getStudentYear());
         return student;
+    }
+
+    private StudentDto getStudentDtoInstance(Student student) {
+        if(student == null) return new StudentDto();
+        StudentDto studentDto = new StudentDto();
+        studentDto.setStudentId(student.getStudentId());
+        studentDto.setStudentName(student.getStudentName());
+        studentDto.setStudentSemester(student.getStudentSemester());
+        studentDto.setStudentYear(student.getStudentYear());
+        return studentDto;
     }
 
 }

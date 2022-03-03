@@ -1,8 +1,11 @@
 package com.springboot.tutorial.dtos;
 
+import lombok.Data;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Data
 public class LocationDto {
 
     private int locationId;
@@ -16,35 +19,4 @@ public class LocationDto {
     @NotEmpty
     private String room;
 
-    public int getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public String getFloor() {
-        return floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
 }
