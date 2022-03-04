@@ -28,7 +28,8 @@ public class CourseService {
     }
 
     public CourseDto getCourse(String id) {
-        return getCourseDtoInstance(courseRepository.findById(id).get());
+        Optional<Course> course = courseRepository.findById(id);
+        return course.map(this::getCourseDtoInstance).orElseGet(CourseDto::new);
     }
 
     public void addCourse(CourseDto courseDto) {
