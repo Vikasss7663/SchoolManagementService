@@ -1,35 +1,29 @@
 package com.springboot.tutorial.controller;
 
 import com.springboot.tutorial.dtos.CourseDto;
-import com.springboot.tutorial.model.Course;
 import com.springboot.tutorial.service.CourseService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/course")
 @RequiredArgsConstructor
 public class CourseController {
 
-	private final Logger log = LoggerFactory.getLogger(CourseController.class);
-
 	private final CourseService service;
-
-	@GetMapping(value = "test")
-	public String test() {
-		log.debug("controller -> CourseController -> This is a Test Logger");
-		return "This is a Test Message";
-	}
 
 	// GET ( Get All Courses )
 	@GetMapping
-	public List<CourseDto> getCourses() {
-		return new ArrayList<>(service.getCourses());
+	public String getCourses(Model model) {
+		List<CourseDto> courses = service.getCourses();
+		model.addAttribute("course", new CourseDto());
+		model.addAttribute("courses", courses);
+		return "course";
 	}
 
 	// GET ( Get All Courses By Semester )
@@ -46,10 +40,10 @@ public class CourseController {
 
 	// POST ( Add Course )
 	@PostMapping
-	public void addCourse(@NonNull @RequestBody CourseDto courseDto) {
+	public String addCourse(@ModelAttribute("course") CourseDto courseDto, Model model) {
 		service.addCourse(courseDto);
+		return getCourses(model);
 	}
-
 
 	// PUT ( Update Course )
 	@PutMapping
@@ -61,6 +55,28 @@ public class CourseController {
 	@DeleteMapping(value = "{id}")
 	public void deleteCourse(@NonNull @PathVariable String id) {
 		service.deleteCourse(id);
+	}
+
+	// Form Add Course
+	@GetMapping(value = "add")
+	public String addCourseForm(Model model) {
+		model.addAttribute("course", new CourseDto());
+		return "course-add";
+	}
+
+	// Form Update Course
+	@GetMapping(value = "update/{id}")
+	public String updateCourseForm(Model model, @NonNull @PathVariable String id) {
+		CourseDto course = service.getCourse(id);
+		model.addAttribute("course", course);
+		return "course-add";
+	}
+
+	// Form Delete Course
+	@PostMapping(value = "delete/{id}")
+	public String deleteCourseForm(Model model, @NonNull @PathVariable String id) {
+		service.deleteCourse(id);
+		return getCourses(model);
 	}
 
 }

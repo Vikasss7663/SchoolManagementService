@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
-public class CourseDto implements Serializable {
+public class CourseDto {
 
     @NotNull(message = "Course Id cannot be null")
     @NotEmpty
