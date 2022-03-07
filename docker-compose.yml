@@ -10,7 +10,7 @@ services:
       - MYSQL_PASSWORD=VishalSingh1
       - MYSQL_ROOT_PASSWORD=VishalSingh1
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sqlinit.sql
       - db:/var/lib/mysql
