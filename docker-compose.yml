@@ -13,7 +13,6 @@ services:
       - "3307:3306"
     volumes:
       - ./init.sql:/data/application/init.sql
-
   app:
     depends_on:
       - mysqldb
@@ -25,6 +24,5 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
-
 volumes:
   db:
