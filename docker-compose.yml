@@ -5,14 +5,26 @@ services:
     platform: linux/amd64
     restart: unless-stopped
     environment:
-      - MYSQL_USER=root
+      - MYSQL_USER=admin
       - MYSQL_DATABASE=demo
       - MYSQL_PASSWORD=VishalSingh1
       - MYSQL_ROOT_PASSWORD=VishalSingh1
     ports:
       - "3307:3306"
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sqlinit.sql
-      - db:/var/lib/mysql
+      - ./init.sql:/data/application/init.sql
+
+  app:
+    depends_on:
+      - mysqldb
+    build: .
+    restart: on-failure
+    ports:
+      - "9090:9090"
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+
 volumes:
   db:
