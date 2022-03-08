@@ -1,15 +1,19 @@
 package com.springboot.tutorial.controller;
 
+import com.springboot.tutorial.dtos.CourseDto;
+import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/student")
 @RequiredArgsConstructor
 public class StudentController {
@@ -18,8 +22,11 @@ public class StudentController {
 
     // GET ( Get All Students )
     @GetMapping
-    public List<StudentDto> getStudents() {
-        return new ArrayList<>(service.getStudents());
+    public String getStudents(Model model) {
+        List<StudentDto> students = service.getStudents();
+        model.addAttribute("student", new StudentDto());
+        model.addAttribute("students", students);
+        return "student";
     }
 
     // GET ( Get All Students By Semester )
@@ -40,10 +47,11 @@ public class StudentController {
         return service.getStudent(id);
     }
 
-    // POST ( Add Student )
+    // POST ( Add Course )
     @PostMapping
-    public void addStudent(@NonNull @RequestBody StudentDto studentDto) {
+    public String addStudent(@ModelAttribute("student") StudentDto studentDto, Model model) {
         service.addStudent(studentDto);
+        return getStudents(model);
     }
 
     // PUT ( Update Student )
@@ -57,4 +65,27 @@ public class StudentController {
     public void deleteStudent(@PathVariable String id) {
         service.deleteStudent(id);
     }
+
+    // Form Add Student
+    @GetMapping(value = "add")
+    public String addStudentForm(Model model) {
+        model.addAttribute("student", new StudentDto());
+        return "student-add";
+    }
+
+    // Form Update Student
+    @GetMapping(value = "update/{id}")
+    public String updateStudentForm(Model model, @NonNull @PathVariable String id) {
+        StudentDto student = service.getStudent(id);
+        model.addAttribute("student", student);
+        return "student-add";
+    }
+
+    // Form Delete Student
+    @PostMapping(value = "delete/{id}")
+    public String deleteStudentForm(Model model, @NonNull @PathVariable String id) {
+        service.deleteStudent(id);
+        return getStudents(model);
+    }
+    
 }

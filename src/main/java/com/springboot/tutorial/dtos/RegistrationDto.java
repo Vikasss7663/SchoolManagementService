@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
-public class RegistrationDto implements Serializable {
+public class RegistrationDto {
 
     private int id;
 
