@@ -34,7 +34,7 @@ public class CourseController {
 
 	// GET ( Get Course by ID)
 	@GetMapping(value = "{id}")
-	public CourseDto getCourse(@NonNull @PathVariable String id) {
+	public CourseDto getCourse(@PathVariable int id) {
 		return service.getCourse(id);
 	}
 
@@ -53,7 +53,7 @@ public class CourseController {
 	
 	// DELETE ( Delete Course )
 	@DeleteMapping(value = "{id}")
-	public void deleteCourse(@NonNull @PathVariable String id) {
+	public void deleteCourse(@PathVariable int id) {
 		service.deleteCourse(id);
 	}
 
@@ -66,7 +66,7 @@ public class CourseController {
 
 	// Form Update Course
 	@GetMapping(value = "update/{id}")
-	public String updateCourseForm(Model model, @NonNull @PathVariable String id) {
+	public String updateCourseForm(Model model, @PathVariable int id) {
 		CourseDto course = service.getCourse(id);
 		model.addAttribute("course", course);
 		return "course-add";
@@ -74,7 +74,7 @@ public class CourseController {
 
 	// Form Delete Course
 	@PostMapping(value = "delete/{id}")
-	public String deleteCourseForm(Model model, @NonNull @PathVariable String id) {
+	public String deleteCourseForm(Model model, @PathVariable int id) {
 		service.deleteCourse(id);
 		return getCourses(model);
 	}

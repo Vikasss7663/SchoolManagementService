@@ -10,9 +10,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class StudentDto {
 
-    @NotNull(message = "Student Id cannot be null")
-    @NotEmpty
-    private String studentId;
+    private int studentId;
 
     @NotNull(message = "Student Name cannot be null")
     @NotEmpty

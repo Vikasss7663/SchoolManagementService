@@ -10,14 +10,16 @@ services:
       - MYSQL_PASSWORD=VishalSingh1
       - MYSQL_ROOT_PASSWORD=VishalSingh1
     ports:
-      - "3307:3306"
+      - "3307:3307"
+    expose:
+      - "3307"
     volumes:
-      - ./init.sql:/data/application/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     depends_on:
       - mysqldb
     build: .
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - "9090:9090"
     volumes:

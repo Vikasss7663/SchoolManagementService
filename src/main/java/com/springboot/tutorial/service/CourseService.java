@@ -27,7 +27,7 @@ public class CourseService {
         return courseDtos;
     }
 
-    public CourseDto getCourse(String id) {
+    public CourseDto getCourse(int id) {
         Optional<Course> course = courseRepository.findById(id);
         return course.map(this::getCourseDtoInstance).orElseGet(CourseDto::new);
     }
@@ -42,7 +42,7 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    public void deleteCourse(String id) {
+    public void deleteCourse(int id) {
         courseRepository.deleteById(id);
     }
 

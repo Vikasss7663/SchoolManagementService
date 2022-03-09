@@ -43,7 +43,7 @@ public class StudentController {
 
     // GET ( Get Student by ID)
     @GetMapping(value = "{id}")
-    public StudentDto getStudent(@NonNull @PathVariable String id) {
+    public StudentDto getStudent(@PathVariable int id) {
         return service.getStudent(id);
     }
 
@@ -62,7 +62,7 @@ public class StudentController {
 
     // DELETE ( Delete Student )
     @DeleteMapping(value = "{id}")
-    public void deleteStudent(@PathVariable String id) {
+    public void deleteStudent(@PathVariable int id) {
         service.deleteStudent(id);
     }
 
@@ -75,7 +75,7 @@ public class StudentController {
 
     // Form Update Student
     @GetMapping(value = "update/{id}")
-    public String updateStudentForm(Model model, @NonNull @PathVariable String id) {
+    public String updateStudentForm(Model model, @NonNull @PathVariable int id) {
         StudentDto student = service.getStudent(id);
         model.addAttribute("student", student);
         return "student-add";
@@ -83,7 +83,7 @@ public class StudentController {
 
     // Form Delete Student
     @PostMapping(value = "delete/{id}")
-    public String deleteStudentForm(Model model, @NonNull @PathVariable String id) {
+    public String deleteStudentForm(Model model, @PathVariable int id) {
         service.deleteStudent(id);
         return getStudents(model);
     }

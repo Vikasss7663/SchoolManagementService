@@ -57,7 +57,7 @@ public class RegistrationService {
 
     private CourseDto tupleToCourseItem(Tuple tuple) {
         CourseDto courseDto = new CourseDto();
-        courseDto.setCourseId(tuple.get("course_id").toString());
+        courseDto.setCourseId((int)tuple.get("course_id"));
         courseDto.setCourseName(tuple.get("course_name").toString());
         courseDto.setCourseSemester((int)tuple.get("course_semester"));
         return courseDto;
@@ -73,7 +73,7 @@ public class RegistrationService {
 
     private StudentDto tupleToStudentItem(Tuple tuple) {
         StudentDto studentDto = new StudentDto();
-        studentDto.setStudentId(tuple.get("student_id").toString());
+        studentDto.setStudentId((int)tuple.get("student_id"));
         studentDto.setStudentName(tuple.get("student_name").toString());
         studentDto.setStudentSemester((int)tuple.get("student_semester"));
         studentDto.setStudentYear((int)tuple.get("student_year"));

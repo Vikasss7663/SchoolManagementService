@@ -72,7 +72,7 @@ public class TimeTableService {
     private CourseScheduleLocationDto tupleToCourseScheduleLocationItem(Tuple tuple) {
 
         CourseScheduleLocationDto courseScheduleLocationDto = new CourseScheduleLocationDto();
-        courseScheduleLocationDto.setCourseId(tuple.get("course_id").toString());
+        courseScheduleLocationDto.setCourseId((int)tuple.get("course_id"));
         courseScheduleLocationDto.setCourseName(tuple.get("course_name").toString());
         courseScheduleLocationDto.setBuilding(tuple.get("building").toString());
         courseScheduleLocationDto.setFloor(tuple.get("floor").toString());

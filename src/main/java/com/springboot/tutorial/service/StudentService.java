@@ -33,7 +33,7 @@ public class StudentService {
         return studentDtos;
     }
 
-    public StudentDto getStudent(String id) {
+    public StudentDto getStudent(int id) {
         return getStudentDtoInstance(studentRepository.findById(id).get());
     }
 
@@ -47,7 +47,7 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public void deleteStudent(String id) {
+    public void deleteStudent(int id) {
         studentRepository.deleteById(id);
     }
 

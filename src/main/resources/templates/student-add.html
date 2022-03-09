@@ -15,12 +15,13 @@
     <div class="container col-8 my-4">
 
         <h2 class="my-2">Add New Student</h2>
+        <a href="/" class="btn btn-primary">Return Home</a>
 
         <hr/>
 
         <form action="#" th:action="@{/student}" th:object="${student}" method="post" class="my-2">
-            <div class="mb-3 my-2">
-                <label for="inputStudentId" class="form-label">Student ID</label>
+            <div class="mb-3 my-4">
+                <label for="inputStudentId" class="form-label">Student Name</label>
                 <input type="text" class="form-control" id="inputStudentId" placeholder="Enter Student ID" th:field="*{studentId}">
             </div>
             <div class="mb-3 my-4">

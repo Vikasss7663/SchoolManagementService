@@ -11,9 +11,7 @@ import java.io.Serializable;
 @Data
 public class CourseDto {
 
-    @NotNull(message = "Course Id cannot be null")
-    @NotEmpty
-    private String courseId;
+    private int courseId;
     
     @NotNull(message = "Course Name cannot be null")
     @NotEmpty

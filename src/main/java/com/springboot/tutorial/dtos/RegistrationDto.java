@@ -11,13 +11,9 @@ public class RegistrationDto {
 
     private int id;
 
-    @NotNull(message = "Course Id can not be null")
-    @NotEmpty
-    private String courseId;
+    private int courseId;
 
-    @NotNull(message = "Student Id can not be null")
-    @NotEmpty
-    private String studentId;
+    private int studentId;
 
 }
 

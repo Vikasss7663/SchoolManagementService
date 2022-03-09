@@ -9,9 +9,7 @@ import javax.validation.constraints.NotNull;
 public class TimeTableDto {
 
     private int id;
-    @NotNull(message = "Course Id can not be null")
-    @NotEmpty
-    private String courseId;
+    private int courseId;
     private int locationId;
     private int scheduleId;
 

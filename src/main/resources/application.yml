@@ -1,0 +1,39 @@
+server:
+  port: '9090'
+
+spring:
+  profiles:
+    active: local
+  mvc:
+    static-path-pattern: /static/**
+  datasource:
+    url: 'jdbc:mysql://0.0.0.0:3307/demo'
+    username: admin
+    password: VishalSingh1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    root: INFO
+    com:
+      springboot:
+        tutorial: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: false
+
+application:
+  access-level:
+    student: ADMIN
+    course: ADMIN
+    schedule: ADMIN
