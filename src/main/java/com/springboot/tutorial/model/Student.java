@@ -12,8 +12,7 @@ import java.util.Set;
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq_gen")
-    @SequenceGenerator(name = "student_seq_gen", sequenceName = "seq_student", allocationSize = 2000)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studentId;
     @Column(nullable = false)
     private String studentName;

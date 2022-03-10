@@ -21,8 +21,8 @@
 
         <form action="#" th:action="@{/course}" th:object="${course}" method="post" class="my-2">
             <div class="mb-3 my-4">
-                <label for="inputCourseId" class="form-label">Course Name</label>
-                <input type="text" class="form-control" id="inputCourseId" placeholder="Enter Course ID" th:field="*{courseId}">
+                <label for="inputCourseId" class="form-label">Course ID</label>
+                <input type="number" class="form-control" id="inputCourseId" placeholder="Enter Course ID" th:field="*{courseId}">
             </div>
             <div class="mb-3 my-4">
                 <label for="inputCourseName" class="form-label">Course Name</label>

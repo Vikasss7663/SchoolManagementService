@@ -13,8 +13,7 @@ import java.util.Set;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "campaign_seq_gen")
-    @SequenceGenerator(name = "campaign_seq_gen", sequenceName = "seq_course", allocationSize = 10)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courseId;
     @Column(nullable = false)
     private String courseName;

@@ -7,14 +7,18 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-    url: 'jdbc:mysql://0.0.0.0:3307/demo'
+    url: 'jdbc:mysql://localhost:3307/demo'
     username: admin
     password: VishalSingh1
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  flyway:
+    enabled: false
 
 logging:
   level:
