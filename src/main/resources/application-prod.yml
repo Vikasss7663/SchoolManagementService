@@ -1,7 +1,8 @@
 server:
-  port: '9090'
+  port: '8080'
 
 spring:
   datasource:
     username: root
+    password: VishalSingh1
     url: 'jdbc:mysql://aws-database.caqc2qacqdrh.us-east-2.rds.amazonaws.com:3306/demo'
