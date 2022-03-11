@@ -7,9 +7,9 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-    url: 'jdbc:mysql://localhost:3307/demo'
+    url: 'jdbc:mysql://localhost:3307/demo?useSSL=false'
     username: admin
-    password: VishalSingh1
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     properties:
