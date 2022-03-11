@@ -1,9 +1,9 @@
 version: "3.8"
 services:
   mysqldb:
-    image: mysql:5.7
+    image: mysql:latest
     platform: linux/amd64
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - MYSQL_USER=admin
       - MYSQL_DATABASE=demo
@@ -17,7 +17,7 @@ services:
     depends_on:
       - mysqldb
     build: ./
-    restart: unless-stopped
+    restart: always
     ports:
       - "9090:9090"
     volumes:

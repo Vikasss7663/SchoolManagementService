@@ -1,0 +1,1 @@
+ALTER TABLE test ADD COLUMN test_name VARCHAR(255);
