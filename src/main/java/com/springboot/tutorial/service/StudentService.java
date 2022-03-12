@@ -1,9 +1,12 @@
 package com.springboot.tutorial.service;
 
+import com.springboot.tutorial.controller.StudentController;
 import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.model.Student;
 import com.springboot.tutorial.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +17,8 @@ import java.util.List;
 public class StudentService {
     
     private final StudentRepository studentRepository;
+    private Logger logger = LoggerFactory.getLogger(StudentService.class);
+
 
     public List<StudentDto> getStudents() {
         List<StudentDto> studentDtos = new ArrayList<>();
@@ -33,8 +38,10 @@ public class StudentService {
         return studentDtos;
     }
 
-    public StudentDto getStudent(int id) {
-        return getStudentDtoInstance(studentRepository.findById(id).get());
+    public Student getStudent(int id) {
+        Student student =  studentRepository.findById(id).get();
+        // StudentDto studentDto = getStudentDtoInstance(student);
+        return student;
     }
 
     public void addStudent(StudentDto studentDto) {

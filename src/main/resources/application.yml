@@ -41,3 +41,7 @@ application:
     student: ADMIN
     course: ADMIN
     schedule: ADMIN
+
+
+message:
+  "WELCOME TO SPRING BOOT TUTORIAL"

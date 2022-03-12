@@ -34,4 +34,9 @@ public class Course {
         this.courseSemester = courseSemester;
     }
 
+    @Override
+    public String toString() {
+        return "Course-"+courseId + ":" + courseName + ":" + courseSemester;
+    }
+
 }

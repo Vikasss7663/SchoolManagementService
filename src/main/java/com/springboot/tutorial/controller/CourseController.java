@@ -23,7 +23,7 @@ public class CourseController {
 		List<CourseDto> courses = service.getCourses();
 		model.addAttribute("course", new CourseDto());
 		model.addAttribute("courses", courses);
-		return "course";
+		return "course/course-list";
 	}
 
 	// GET ( Get All Courses By Semester )
@@ -61,7 +61,7 @@ public class CourseController {
 	@GetMapping(value = "add")
 	public String addCourseForm(Model model) {
 		model.addAttribute("course", new CourseDto());
-		return "course-add";
+		return "course/course-add";
 	}
 
 	// Form Update Course
@@ -69,7 +69,7 @@ public class CourseController {
 	public String updateCourseForm(Model model, @PathVariable int id) {
 		CourseDto course = service.getCourse(id);
 		model.addAttribute("course", course);
-		return "course-add";
+		return "course/course-add";
 	}
 
 	// Form Delete Course
