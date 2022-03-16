@@ -4,13 +4,13 @@ import com.springboot.tutorial.dtos.CourseDto;
 import com.springboot.tutorial.service.CourseService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/course")
 @RequiredArgsConstructor
 public class CourseController {
@@ -19,11 +19,8 @@ public class CourseController {
 
 	// GET ( Get All Courses )
 	@GetMapping
-	public String getCourses(Model model) {
-		List<CourseDto> courses = service.getCourses();
-		model.addAttribute("course", new CourseDto());
-		model.addAttribute("courses", courses);
-		return "course/course-list";
+	public List<CourseDto> getCourses() {
+		return service.getCourses();
 	}
 
 	// GET ( Get All Courses By Semester )
@@ -40,43 +37,20 @@ public class CourseController {
 
 	// POST ( Add Course )
 	@PostMapping
-	public String addCourse(@ModelAttribute("course") CourseDto courseDto, Model model) {
-		service.addCourse(courseDto);
-		return getCourses(model);
+	public ResponseEntity<String> addCourse(@NonNull @RequestBody CourseDto courseDto) {
+		return service.addCourse(courseDto);
 	}
 
 	// PUT ( Update Course )
 	@PutMapping
-	public void updateCourse(@NonNull @RequestBody CourseDto courseDto) {
-		service.updateCourse(courseDto);
+	public ResponseEntity<String> updateCourse(@NonNull @RequestBody CourseDto courseDto) {
+		return service.updateCourse(courseDto);
 	}
 	
 	// DELETE ( Delete Course )
 	@DeleteMapping(value = "{id}")
-	public void deleteCourse(@PathVariable int id) {
-		service.deleteCourse(id);
-	}
-
-	// Form Add Course
-	@GetMapping(value = "add")
-	public String addCourseForm(Model model) {
-		model.addAttribute("course", new CourseDto());
-		return "course/course-add";
-	}
-
-	// Form Update Course
-	@GetMapping(value = "update/{id}")
-	public String updateCourseForm(Model model, @PathVariable int id) {
-		CourseDto course = service.getCourse(id);
-		model.addAttribute("course", course);
-		return "course/course-add";
-	}
-
-	// Form Delete Course
-	@PostMapping(value = "delete/{id}")
-	public String deleteCourseForm(Model model, @PathVariable int id) {
-		service.deleteCourse(id);
-		return getCourses(model);
+	public ResponseEntity<String> deleteCourse(@PathVariable int id) {
+		return service.deleteCourse(id);
 	}
 
 }

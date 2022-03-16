@@ -4,8 +4,6 @@ server:
 spring:
   profiles:
     active: local
-  mvc:
-    static-path-pattern: /static/**
   datasource:
     url: 'jdbc:mysql://mysqldb:3306/demo?allowPublicKeyRetrieval=true&useSSL=false'
     username: admin
@@ -22,26 +20,60 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
     com:
       springboot:
-        tutorial: INFO
+        tutorial: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      testService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 10
+        permittedNumberOfCallsInHalfOpenState: 4
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      courseService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 10
+        permittedNumberOfCallsInHalfOpenState: 4
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+
+  retry:
+    instances:
+      retryService:
+        maxAttempts: 10
+        waitDuration: 5s
+#        retryExceptions:
+#          - org.springframework.web.client.HttpServerErrorException
+#          - java.io.IOException
+
 
 management:
+  health:
+    circuitbreakers:
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: health
   endpoint:
-    shutdown:
-      enabled: false
+    health:
+      show-details: always
+
 
 application:
   access-level:
     student: ADMIN
     course: ADMIN
     schedule: ADMIN
-
-
-message:
-  "WELCOME TO SPRING BOOT TUTORIAL"

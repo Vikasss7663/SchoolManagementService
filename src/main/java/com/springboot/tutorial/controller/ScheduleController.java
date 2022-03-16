@@ -1,22 +1,14 @@
 package com.springboot.tutorial.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.springboot.tutorial.dtos.ScheduleDto;
-import com.springboot.tutorial.dtos.ScheduleDto;
-import com.springboot.tutorial.dtos.ScheduleDto;
-import com.springboot.tutorial.dtos.ScheduleDto;
-import com.springboot.tutorial.model.Schedule;
 import com.springboot.tutorial.service.ScheduleService;
-
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/schedule")
 @RequiredArgsConstructor
 public class ScheduleController {
@@ -25,11 +17,8 @@ public class ScheduleController {
 
 	// GET ( Get All Schedules )
 	@GetMapping
-	public String getSchedules(Model model) {
-		List<ScheduleDto> schedules = service.getSchedules();
-		model.addAttribute("schedule", new ScheduleDto());
-		model.addAttribute("schedules", schedules);
-		return "schedule/schedule-list";
+	public List<ScheduleDto> getSchedules() {
+		return service.getSchedules();
 	}
 
 	// GET ( Get Schedule by Id)
@@ -40,9 +29,8 @@ public class ScheduleController {
 
 	// POST ( Add Schedule )
 	@PostMapping
-	public String addCourse(@ModelAttribute("schedule") ScheduleDto scheduleDto, Model model) {
+	public void addCourse(@NonNull @RequestBody ScheduleDto scheduleDto) {
 		service.addSchedule(scheduleDto);
-		return getSchedules(model);
 	}
 	
 	// PUT ( Update Schedule )
@@ -57,26 +45,4 @@ public class ScheduleController {
 		service.deleteSchedule(id);
 	}
 
-	// Form Add Schedule
-	@GetMapping(value = "add")
-	public String addScheduleForm(Model model) {
-		model.addAttribute("schedule", new ScheduleDto());
-		return "schedule/schedule-add";
-	}
-
-	// Form Update Schedule
-	@GetMapping(value = "update/{id}")
-	public String updateScheduleForm(Model model, @PathVariable int id) {
-		ScheduleDto schedule = service.getSchedule(id);
-		model.addAttribute("schedule", schedule);
-		return "schedule/schedule-add";
-	}
-
-	// Form Delete Schedule
-	@PostMapping(value = "delete/{id}")
-	public String deleteScheduleForm(Model model, @PathVariable int id) {
-		service.deleteSchedule(id);
-		return getSchedules(model);
-	}
-	
 }

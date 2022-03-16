@@ -19,7 +19,7 @@
 
         <hr/>
 
-        <form action="#" th:action="@{/schedule}" th:object="${schedule}" method="post" class="my-2">
+        <form action="#" th:action="@{/ui/schedule}" th:object="${schedule}" method="post" class="my-2">
             <div class="mb-3 my-4">
                 <label for="inputScheduleId" class="form-label">Schedule ID</label>
                 <input type="number" class="form-control" id="inputScheduleId" placeholder="Enter Schedule ID" th:field="*{scheduleId}">

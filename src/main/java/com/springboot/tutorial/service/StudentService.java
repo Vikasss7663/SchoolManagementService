@@ -1,6 +1,5 @@
 package com.springboot.tutorial.service;
 
-import com.springboot.tutorial.controller.StudentController;
 import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.model.Student;
 import com.springboot.tutorial.repository.StudentRepository;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,10 +38,9 @@ public class StudentService {
         return studentDtos;
     }
 
-    public Student getStudent(int id) {
-        Student student =  studentRepository.findById(id).get();
-        // StudentDto studentDto = getStudentDtoInstance(student);
-        return student;
+    public StudentDto getStudent(int id) {
+        Optional<Student> course = studentRepository.findById(id);
+        return course.map(this::getStudentDtoInstance).orElseGet(StudentDto::new);
     }
 
     public void addStudent(StudentDto studentDto) {

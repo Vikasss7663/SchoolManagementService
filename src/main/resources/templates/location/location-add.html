@@ -19,7 +19,7 @@
 
         <hr/>
 
-        <form action="#" th:action="@{/location}" th:object="${location}" method="post" class="my-2">
+        <form action="#" th:action="@{/ui/location}" th:object="${location}" method="post" class="my-2">
             <div class="mb-3 my-4">
                 <label for="inputLocationId" class="form-label">Location ID</label>
                 <input type="number" class="form-control" id="inputLocationId" placeholder="Enter Location ID" th:field="*{locationId}">

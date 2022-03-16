@@ -35,12 +35,12 @@
                 <td th:text="${schedule.startTime}"></td>
                 <td th:text="${schedule.endTime}"></td>
                 <td>
-                    <form action="#" th:action="@{'/schedule/delete/' + ${schedule.scheduleId}}" method="post">
+                    <form action="#" th:action="@{'/ui/schedule/delete/' + ${schedule.scheduleId}}" method="post">
                         <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </td>
                 <td>
-                    <form action="#" th:action="@{'/schedule/update/' + ${schedule.scheduleId}}" method="get">
+                    <form action="#" th:action="@{'/ui/schedule/update/' + ${schedule.scheduleId}}" method="get">
                         <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
                     </form>
                 </td>

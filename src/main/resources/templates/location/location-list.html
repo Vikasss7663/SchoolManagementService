@@ -35,12 +35,12 @@
                 <td th:text="${location.floor}"></td>
                 <td th:text="${location.room}"></td>
                 <td>
-                    <form action="#" th:action="@{'/location/delete/' + ${location.locationId}}" method="post">
+                    <form action="#" th:action="@{'/ui/location/delete/' + ${location.locationId}}" method="post">
                         <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                     </form>
                 </td>
                 <td>
-                    <form action="#" th:action="@{'/location/update/' + ${location.locationId}}" method="get">
+                    <form action="#" th:action="@{'/ui/location/update/' + ${location.locationId}}" method="get">
                         <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
                     </form>
                 </td>
