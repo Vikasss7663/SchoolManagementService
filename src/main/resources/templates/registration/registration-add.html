@@ -14,37 +14,20 @@
 
 <div class="container my-2">
 
-    <a class="btn btn-primary my-2" role="button" href="/ui/course/add">Add New Course</a>
+    <a class="btn btn-primary my-2" role="button" href="/ui/registration/add">New Registration</a>
     <a href="/" class="btn btn-primary">Return Home</a>
 
-    <table class="table table-striped my-2">
-        <thead>
-        <tr>
-            <th scope="col">Course Id</th>
-            <th scope="col">Course Name</th>
-            <th scope="col">Course Semester</th>
-            <th scope="col">Delete</th>
-            <th scope="col">update</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="course: ${courses}">
-            <td scope="row" th:text="${course.courseId}"></td>
-            <td><a th:href="@{'/ui/course/' + ${course.courseId}}" th:text="${course.courseName}"></a></td>
-            <td th:text="${course.courseSemester}"></td>
-            <td>
-                <form action="#" th:action="@{'/ui/course/delete/' + ${course.courseId}}" method="post">
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-                </form>
-            </td>
-            <td>
-                <form action="#" th:action="@{'/ui/course/update/' + ${course.courseId}}" method="get">
-                    <button type="submit" class="btn btn-outline-primary btn-sm">Update</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form action="#" th:action="@{/ui/registration}" th:object="${registration}" method="post" class="my-2">
+        <div class="mb-3 my-4">
+            <label for="inputCourseId" class="form-label">Course ID</label>
+            <input type="number" class="form-control" id="inputCourseId" placeholder="Enter Course ID" th:field="*{courseId}">
+        </div>
+        <div class="mb-3 my-4">
+            <label for="inputStudentId" class="form-label">Student ID</label>
+            <input type="number" class="form-control" id="inputStudentId" placeholder="Enter Student ID" th:field="*{studentId}">
+        </div>
+        <button type="submit" class="btn btn-primary my-2">Submit</button>
+    </form>
 
 </div>
 

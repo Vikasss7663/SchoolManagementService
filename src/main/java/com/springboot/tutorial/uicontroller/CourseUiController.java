@@ -1,7 +1,6 @@
-package com.springboot.tutorial.uiController;
+package com.springboot.tutorial.uicontroller;
 
 import com.springboot.tutorial.dtos.CourseDto;
-import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.service.CourseService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourseUiController {
 
+	private static final String COURSE_ATTR = "course";
 	private final CourseService service;
 
 	// GET ( Get All Courses )
@@ -36,15 +36,15 @@ public class CourseUiController {
 	@GetMapping(value = "{id}")
 	public String getCourse(@PathVariable int id, Model model) {
 		CourseDto courseDto = service.getCourse(id);
-		model.addAttribute("course", courseDto);
+		model.addAttribute(COURSE_ATTR, courseDto);
 		return "course/course-item";
 	}
 
 	// POST ( Add Course )
 	@PostMapping
-	public String addCourse(@ModelAttribute("course") CourseDto courseDto, Model model) {
+	public String addCourse(@ModelAttribute(COURSE_ATTR) CourseDto courseDto, Model model) {
 		service.addCourse(courseDto);
-		return getCourses(model);
+		return "redirect:/ui/course";
 	}
 
 	// PUT ( Update Course )
@@ -62,7 +62,7 @@ public class CourseUiController {
 	// Form Add Course
 	@GetMapping(value = "add")
 	public String addCourseForm(Model model) {
-		model.addAttribute("course", new CourseDto());
+		model.addAttribute(COURSE_ATTR, new CourseDto());
 		return "course/course-add";
 	}
 
@@ -70,7 +70,7 @@ public class CourseUiController {
 	@GetMapping(value = "update/{id}")
 	public String updateCourseForm(Model model, @PathVariable int id) {
 		CourseDto course = service.getCourse(id);
-		model.addAttribute("course", course);
+		model.addAttribute(COURSE_ATTR, course);
 		return "course/course-add";
 	}
 

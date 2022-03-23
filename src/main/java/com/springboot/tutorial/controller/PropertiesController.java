@@ -15,7 +15,7 @@ public class PropertiesController {
     private final ApplicationProperties applicationProperties;
 
     @GetMapping(path = "/application", produces = MediaType.APPLICATION_JSON_VALUE)
-    private String getApplicationProperties() {
+    public String getApplicationProperties() {
         return applicationProperties.toString();
     }
 

@@ -1,47 +1,59 @@
 package com.springboot.tutorial.controller;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequiredArgsConstructor
 public class TestController {
 
-    private static final String TEST_SERVICE = "testService";
-    private static final String RETRY_SERVICE = "retryService";
-    private static final String ERROR_MESSAGE = "<h2>This is Test Error</h2>";
-    private static final String RETRY_MESSAGE = "<h2>We are retrying</h2>";
+    private RestTemplate restTemplate;
+    private final CircuitBreaker testServiceCircuitBreaker;
+    private final KafkaTemplate<String, String> kafkaTemplate;
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    RestTemplate restTemplate = new RestTemplate();
-
-    @GetMapping("/test")
-//    @CircuitBreaker(name = TEST_SERVICE, fallbackMethod ="testFallbackMethod")
-    @Retry(name = RETRY_SERVICE, fallbackMethod = "retryFallbackMethod")
-    public ResponseEntity<String> test() {
-        logger.debug("TestController -> Retrying....");
-        String test = restTemplate.getForObject("http://localhost:9090/test/count/1", String.class);
-        return new ResponseEntity<>(test, HttpStatus.OK);
+    public void sendMessage(String msg) {
+        kafkaTemplate.send("Kafka-Example", msg);
     }
 
-    public ResponseEntity<String> testFallbackMethod(Exception e) {
-        return new ResponseEntity<>(ERROR_MESSAGE, HttpStatus.OK);
+    @GetMapping("/test/{count}")
+    public String test(@PathVariable int count) {
+
+        restTemplate = new RestTemplate();
+
+        sendMessage("Count -> " + count);
+
+        return testServiceCircuitBreaker.run(
+                () -> restTemplate.getForObject("http://localhost:9090/test/count/"+count, String.class),
+                (throwable) -> fallbackMethod()
+        );
+
     }
 
-    public ResponseEntity<String> retryFallbackMethod(Exception e) {
-        return new ResponseEntity<>(RETRY_MESSAGE, HttpStatus.OK);
+    public String fallbackMethod() {
+        return "Default Fallback Method";
     }
 
-    @GetMapping("/test/count")
+    @GetMapping("/test/count/1")
     public String testCount() {
         return "1001";
     }
+
+    @KafkaListener(topics = "Kafka-Example")
+    public void listen(String message) {
+        logger.debug(String.format("\n\n\n\n\n\nReceived Message in group - group-id: {0} \n\n\n\n\n", message));
+    }
+
 
 }

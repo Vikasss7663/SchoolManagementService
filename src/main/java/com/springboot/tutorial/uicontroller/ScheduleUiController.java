@@ -1,4 +1,4 @@
-package com.springboot.tutorial.uiController;
+package com.springboot.tutorial.uicontroller;
 
 import com.springboot.tutorial.dtos.ScheduleDto;
 import com.springboot.tutorial.service.ScheduleService;

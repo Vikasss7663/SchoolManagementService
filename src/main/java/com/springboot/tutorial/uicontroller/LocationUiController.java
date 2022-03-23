@@ -1,4 +1,4 @@
-package com.springboot.tutorial.uiController;
+package com.springboot.tutorial.uicontroller;
 
 import com.springboot.tutorial.dtos.LocationDto;
 import com.springboot.tutorial.service.LocationService;

@@ -1,4 +1,4 @@
-package com.springboot.tutorial.uiController;
+package com.springboot.tutorial.uicontroller;
 
 import com.springboot.tutorial.dtos.StudentDto;
 import com.springboot.tutorial.service.StudentService;
@@ -17,6 +17,7 @@ import java.util.List;
 public class StudentUiController {
 
     private final StudentService service;
+    private static final String STUDENT = "student";
 
     // GET ( Get All Students )
     @GetMapping
@@ -42,15 +43,15 @@ public class StudentUiController {
     @GetMapping(value = "{id}")
     public String getStudent(@PathVariable int id, Model model) {
         StudentDto studentDto = service.getStudent(id);
-        model.addAttribute("student", studentDto);
+        model.addAttribute(STUDENT, studentDto);
         return "student/student-item";
     }
 
     // POST ( Add Course )
     @PostMapping
-    public String addStudent(@ModelAttribute("student") StudentDto studentDto, Model model) {
+    public String addStudent(@ModelAttribute(STUDENT) StudentDto studentDto, Model model) {
         service.addStudent(studentDto);
-        return getStudents(model);
+        return "redirect:/ui/student";
     }
 
     // PUT ( Update Student )
@@ -68,7 +69,7 @@ public class StudentUiController {
     // Form Add Student
     @GetMapping(value = "add")
     public String addStudentForm(Model model) {
-        model.addAttribute("student", new StudentDto());
+        model.addAttribute(STUDENT, new StudentDto());
         return "student/student-add";
     }
 
@@ -76,7 +77,7 @@ public class StudentUiController {
     @GetMapping(value = "update/{id}")
     public String updateStudentForm(Model model, @NonNull @PathVariable int id) {
         StudentDto studentDto = service.getStudent(id);
-        model.addAttribute("student", studentDto);
+        model.addAttribute(STUDENT, studentDto);
         return "student/student-add";
     }
 

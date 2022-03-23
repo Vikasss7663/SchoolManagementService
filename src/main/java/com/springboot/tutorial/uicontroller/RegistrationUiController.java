@@ -1,4 +1,4 @@
-package com.springboot.tutorial.uiController;
+package com.springboot.tutorial.uicontroller;
 
 import com.springboot.tutorial.dtos.CourseDto;
 import com.springboot.tutorial.dtos.RegistrationDto;
@@ -36,9 +36,17 @@ public class RegistrationUiController {
     }
 
     // POST ( Add Student )
-    @PostMapping(value = "student")
-    public void addStudent(@NonNull @RequestBody RegistrationDto registrationDto) {
+    @PostMapping
+    public String addStudent(@ModelAttribute("registration") RegistrationDto registrationDto, Model model) {
         service.addStudent(registrationDto);
+        return "registration/registration-add";
+    }
+
+    // Form Register Student & Course
+    @GetMapping(value = "add")
+    public String addRegistrationForm(Model model) {
+        model.addAttribute("registration", new RegistrationDto());
+        return "registration/registration-add";
     }
 
 }
