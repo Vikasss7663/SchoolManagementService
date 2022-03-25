@@ -43,14 +43,16 @@ public class StudentService {
         return course.map(this::getStudentDtoInstance).orElseGet(StudentDto::new);
     }
 
-    public void addStudent(StudentDto studentDto) {
+    public StudentDto addStudent(StudentDto studentDto) {
         Student student = getStudentInstanceFromDto(studentDto);
-        studentRepository.save(student);
+        Student insertedStudent = studentRepository.save(student);
+        return getStudentDtoInstance(insertedStudent);
     }
 
-    public void updateStudent(StudentDto studentDto) {
+    public StudentDto updateStudent(StudentDto studentDto) {
         Student student = getStudentInstanceFromDto(studentDto);
-        studentRepository.save(student);
+        Student updatedStudent = studentRepository.save(student);
+        return getStudentDtoInstance(updatedStudent);
     }
 
     public void deleteStudent(int id) {

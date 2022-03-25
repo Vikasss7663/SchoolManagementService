@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import static com.school.management.constants.ApplicationConstants.CROSS_ORIGIN_URL;
+import static com.school.management.constants.ApplicationConstants.TOPIC_NAME;
 
 
 @CrossOrigin(origins = CROSS_ORIGIN_URL)
@@ -22,19 +23,12 @@ public class TestController {
 
     private RestTemplate restTemplate;
     private final CircuitBreaker testServiceCircuitBreaker;
-    private final KafkaTemplate<String, String> kafkaTemplate;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    public void sendMessage(String msg) {
-        kafkaTemplate.send("Kafka-Example", msg);
-    }
 
     @GetMapping("/test/{count}")
     public String test(@PathVariable int count) {
 
         restTemplate = new RestTemplate();
-
-        sendMessage("Count -> " + count);
 
         return testServiceCircuitBreaker.run(
                 () -> restTemplate.getForObject("http://localhost:9090/test/count/"+count, String.class),
@@ -50,11 +44,6 @@ public class TestController {
     @GetMapping("/test/count/1")
     public String testCount() {
         return "1001";
-    }
-
-    @KafkaListener(topics = "Kafka-Example")
-    public void listen(String message) {
-        logger.debug(String.format("\n\n\n\n\n\nReceived Message in group - group-id: {0} \n\n\n\n\n", message));
     }
 
 

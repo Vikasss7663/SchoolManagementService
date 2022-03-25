@@ -22,8 +22,8 @@ logging:
   level:
     root: DEBUG
     com:
-      springboot:
-        tutorial: DEBUG
+      schoool:
+        management: DEBUG
 
 resilience4j:
   circuitbreaker:
@@ -75,9 +75,6 @@ management:
 kafka:
   producer:
     bootstrap-servers: 'http://127.0.0.1:9092'
-  consumer:
-    bootstrap-servers: 'http://127.0.0.1:9092'
-    group-id: 'school-service'
 
 application:
   access-level:

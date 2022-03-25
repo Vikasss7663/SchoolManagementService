@@ -54,13 +54,13 @@ curl http://localhost:9090/student/{id}
 curl http://localhost:9090/student/"2018UEC1001"
 
 ### POST ( Add Student )
-curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
+curl -d '{"studentId":1,"studentName":"Vishal Singh","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
-curl -d '{"studentId":"2018UEC1023","studentName":"Satyanarayan","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
+curl -d '{"studentId":2,"studentName":"Satyanarayan","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
-curl -d '{"studentId":"2018UEC1582","studentName":"Sushil Kumar","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
+curl -d '{"studentId":3,"studentName":"Sushil Kumar","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
-curl -d '{"studentId":"2018UEC1003","studentName":"Vishwas Bansal","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
+curl -d '{"studentId":4,"studentName":"Vishwas Bansal","studentSemester":8,"studentYear":2018}' -H "Content-Type: application/json" -X POST http://localhost:9090/student
 
 ### PUT ( Update Student )
 curl -d '{"studentId":"2018UEC1001","studentName":"Vishal Singh Shekhawat","studentSemester":7,"studentYear":2018}' -H "Content-Type: application/json" -X PUT http://localhost:9090/student
