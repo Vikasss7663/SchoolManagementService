@@ -14,8 +14,6 @@ import org.springframework.retry.annotation.EnableRetry;
 @RequiredArgsConstructor
 public class CircuitBreakerConfig {
 
-    private final CourseServiceCircuitBreakerProperties courseServiceCircuitBreakerProperties;
-    private final TestServiceCircuitBreakerProperties testServiceCircuitBreakerProperties;
     private final CircuitBreakerFactory circuitBreakerFactory;
 
     @Bean("testServiceCircuitBreaker")

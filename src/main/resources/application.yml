@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: local
+#    active: local
   datasource:
     url: 'jdbc:mysql://mysqldb:3306/demo?allowPublicKeyRetrieval=true&useSSL=false'
     username: admin
@@ -29,6 +29,16 @@ resilience4j:
   circuitbreaker:
     instances:
       test-service:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 10
+        permittedNumberOfCallsInHalfOpenState: 4
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED
+      course-service:
         registerHealthIndicator: true
         eventConsumerBufferSize: 10
         automaticTransitionFromOpenToHalfOpenEnabled: true
