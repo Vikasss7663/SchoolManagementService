@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-#    active: local
+    active: local
   datasource:
     url: 'jdbc:mysql://mysqldb:3306/demo?allowPublicKeyRetrieval=true&useSSL=false'
     username: admin

@@ -8,10 +8,10 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.springboot</groupId>
-	<artifactId>tutorial</artifactId>
+	<groupId>com.student</groupId>
+	<artifactId>management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tutorial</name>
+	<name>SchoolManagementService</name>
 	<description>Tutorial project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
