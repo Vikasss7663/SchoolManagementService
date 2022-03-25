@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import static com.springboot.tutorial.constants.ApplicationConstants.CROSS_ORIGIN_URL;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
+@CrossOrigin(origins = CROSS_ORIGIN_URL)
 @RestController
 @RequiredArgsConstructor
 public class TestController {
