@@ -9,8 +9,8 @@ import java.time.Duration;
 
 @Data
 @Configuration
-@ConfigurationProperties("resilience4j.circuitbreaker.instances.course-service")
-public class CourseServiceCircuitBreakerProperties {
+@ConfigurationProperties("resilience4j.circuitbreaker.instances.student-management-service")
+public class StudentManagementServiceCircuitBreakerProperties {
 
     private Boolean registerHealthIndicator;
     private Integer eventConsumerBufferSize;

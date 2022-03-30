@@ -1,6 +1,6 @@
 package com.school.management.config;
 
-import com.school.management.properties.CourseServiceCircuitBreakerProperties;
+import com.school.management.properties.StudentManagementServiceCircuitBreakerProperties;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 import lombok.RequiredArgsConstructor;
@@ -16,19 +16,19 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class Resilience4JConfig {
 
-    private final CourseServiceCircuitBreakerProperties courseServiceCircuitBreakerProperties;
+    private final StudentManagementServiceCircuitBreakerProperties studentManagementServiceCircuitBreakerProperties;
 
     @Bean("circuitBreakerFactory")
     public Customizer<Resilience4JCircuitBreakerFactory> getCircuitBreakerFactory() {
 
         // the circuitBreakerConfig and timeLimiterConfig objects
         CircuitBreakerConfig circuitBreakerConfig = CircuitBreakerConfig.custom()
-                .failureRateThreshold(courseServiceCircuitBreakerProperties.getFailureRateThreshold())
-                .waitDurationInOpenState(courseServiceCircuitBreakerProperties.getWaitDurationInOpenState())
-                .permittedNumberOfCallsInHalfOpenState(courseServiceCircuitBreakerProperties.getPermittedNumberOfCallsInHalfOpenState())
-                .minimumNumberOfCalls(courseServiceCircuitBreakerProperties.getMinimumNumberOfCalls())
-                .slidingWindowType(courseServiceCircuitBreakerProperties.getSlidingWindowType())
-                .slidingWindowSize(courseServiceCircuitBreakerProperties.getSlidingWindowSize())
+                .failureRateThreshold(studentManagementServiceCircuitBreakerProperties.getFailureRateThreshold())
+                .waitDurationInOpenState(studentManagementServiceCircuitBreakerProperties.getWaitDurationInOpenState())
+                .permittedNumberOfCallsInHalfOpenState(studentManagementServiceCircuitBreakerProperties.getPermittedNumberOfCallsInHalfOpenState())
+                .minimumNumberOfCalls(studentManagementServiceCircuitBreakerProperties.getMinimumNumberOfCalls())
+                .slidingWindowType(studentManagementServiceCircuitBreakerProperties.getSlidingWindowType())
+                .slidingWindowSize(studentManagementServiceCircuitBreakerProperties.getSlidingWindowSize())
                 .build();
 
         TimeLimiterConfig timeLimiterConfig = TimeLimiterConfig.custom()
