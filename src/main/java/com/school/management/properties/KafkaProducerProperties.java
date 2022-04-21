@@ -10,5 +10,6 @@ import org.springframework.context.annotation.Configuration;
 public class KafkaProducerProperties {
 
     private String bootstrapServers;
+    private String schemaRegistryUrl;
 
 }

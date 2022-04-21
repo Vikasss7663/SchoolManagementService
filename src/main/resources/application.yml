@@ -1,11 +1,11 @@
 server:
-  port: '9090'
+  port: '5050'
 
 logging:
   level:
-    root: DEBUG
+    root: INFO
     com:
-      schoool:
+      school:
         management: DEBUG
 
 resilience4j:
@@ -28,23 +28,34 @@ resilience4j:
         waitDuration: 1s
         enableExponentialBackoff: true
         exponentialBackoffMultiplier: 2
-#        retryExceptions:
-#          - org.springframework.web.client.HttpServerErrorException
-#          - java.io.IOException
-#        ignoreExceptions:
 
 management:
   health:
     circuitbreakers:
       enabled: true
   endpoints:
+    enabled-by-default: true
     web:
       exposure:
-        include: health
+        include: "*"
   endpoint:
     health:
       show-details: always
+  metrics:
+    tags:
+      application: SchoolManagementService
 
 kafka:
   producer:
-    bootstrap-servers: 'http://127.0.0.1:9092'
+    bootstrap-servers: 'http://0.0.0.0:9092'
+    schema-registry-url: 'http://0.0.0.0:8081'
+
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: 'school-management-service'
+
+PROFILE_ENV: 'local'

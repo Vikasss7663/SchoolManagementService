@@ -1,0 +1,45 @@
+{
+  "type": "record",
+  "name": "StudentEvent",
+  "namespace": "com.school.management.schema.student",
+  "fields": [
+    {
+      "name": "studentId",
+      "type": [
+        "int"
+      ]
+    },
+    {
+      "name": "studentName",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    {
+      "name": "studentSemester",
+      "type": [
+        "int"
+      ]
+    },
+    {
+      "name": "studentYear",
+      "type": [
+        "int"
+      ]
+    },
+    {
+      "name": "schoolId",
+      "type": [
+        "int"
+      ]
+    },
+    {
+      "name": "schoolName",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  ]
+}
